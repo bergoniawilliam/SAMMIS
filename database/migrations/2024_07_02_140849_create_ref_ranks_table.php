@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stations', function (Blueprint $table) {
+        Schema::create('ref_ranks', function (Blueprint $table) {
             $table->id();
-            $table->integer('unit_office_id');
-            $table->string('abbvr');
+            $table->string('name')->nullable();
+            $table->string('abbvr')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stations');
+        Schema::dropIfExists('ref_ranks');
     }
 };

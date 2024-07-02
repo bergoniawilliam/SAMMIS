@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stations', function (Blueprint $table) {
+        Schema::create('verification_reports', function (Blueprint $table) {
             $table->id();
-            $table->integer('unit_office_id');
-            $table->string('abbvr');
+            $table->integer('verified_by_id');
+            $table->string('search_input');
+            $table->datetime('date_time_verified');
+            $table->string('status');
+            $table->string('location');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stations');
+        Schema::dropIfExists('verification_reports');
     }
 };

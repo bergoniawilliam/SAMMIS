@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('municipality');
             $table->string('barangay');
             $table->string('street');
-            $table->date('date_time_missing');
+            $table->datetime('date_time_missing');
             $table->string('owner');
             $table->string('type');
             $table->string('make');
