@@ -29,7 +29,7 @@ class UsersModals extends Component
     {
         $user = User::find($id);
         // $this->user_data = $user;
-   
+    
             $this->userid = $user->id;
             $this->updateMode = true;
             $this->email = $user->email;
