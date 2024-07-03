@@ -5,6 +5,8 @@ namespace App\Livewire\User;
 use Livewire\Component;
 use App\Models\User;
 use Livewire\WithPagination;
+use Livewire\Attributes\On;
+
 class Users extends Component
 {
     public $search = '';
@@ -12,14 +14,38 @@ class Users extends Component
     public $userId;
     use WithPagination;
     
+    #[On('refresList')]
     public function render()
     {
         $this->users = User::all();
-        return view('livewire.user.users')->extends('layouts.app')->section('content');
+        return view('livewire.user.users')
+            ->extends('layouts.app')
+            ->section('content');
     }
-      public function editUser($id)
+
+    public function addUser(){
+        $this->dispatch('addUserForm');
+    }
+
+    public function editUser($id)
     {
-        $this->dispatch('populateForm', $id);
+        $this->dispatch('populateForm', userId: $id);
+    }
+
+    public function deleteUser($id)
+    {
+        $this->dispatch('deleteUserForm', userId: $id);
+    }
+
+    #[On('showDeleteMessage')]
+    public function showDeleteMessage($lastName)
+    {
+        session()->flash('message', $lastName . ' has been delete successfully!');
+    }
+
+    public function clearSuccessMessage()
+    {
+        session()->forget('message');
     }
    
 }
