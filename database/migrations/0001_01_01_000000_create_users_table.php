@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->string('qualifier')->nullable();
+            $table->integer('station_id')->nullable();;
+            $table->integer('unit_office_id')->nullable();;
+            $table->string('role')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('stations', function (Blueprint $table) {
             $table->id();
             $table->integer('unit_office_id');
-            $table->string('abbvr');
+            $table->string('name');
             $table->timestamps();
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.
