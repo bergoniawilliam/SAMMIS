@@ -2,10 +2,11 @@
 <div>
     <div class="flex justify-between item-center">
         <h1 class="text-2xl font-bold">USERS</h1>
-    </div>
+    
         <button open="true" data-modal-target="user-modal" data-modal-toggle="user-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button" wire:click="addUser">
             Add User
         </button>
+    </div><br>    
     <div>
         <input wire:model.debounce.300ms="search" type="text" placeholder="Search by Name or Email" class="w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-primary-500 focus:border-primary-500 mb-4" />
         @if(session()->has('message'))

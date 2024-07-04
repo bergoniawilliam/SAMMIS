@@ -22,7 +22,10 @@ class User extends Authenticatable
         'first_name',
         'middle_name',
         'last_name',
-        'qualifier'
+        'qualifier',
+        'station_id',
+        'unit_office_id',
+         'role',
     ];
 
     /**
