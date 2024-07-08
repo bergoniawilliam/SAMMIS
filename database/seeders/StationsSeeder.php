@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\Stations;
+use App\Models\Station;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,577 +12,577 @@ class StationsSeeder extends Seeder
      */
     public function run(): void
     {
-       stations::create([
+       Station::create([
             'name' => 'Basco Police Station',
             'unit_office_id' => ' 6',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Itbayat Police Station',
             'unit_office_id' => ' 6',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Ivana Police Station',
             'unit_office_id' => ' 6',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Mahatao Police Station',
             'unit_office_id' => ' 6',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Sabtang Police Station',
             'unit_office_id' => ' 6',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Uyugan Police Station',
             'unit_office_id' => ' 6',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Abulug Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Alcala Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Allacapan Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Amulung Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Aparri Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Baggao Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Ballesteros Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Buguey Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Calayan Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Camalaniugan Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Claveria Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Enrile Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Gattaran Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Gonzaga Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Iguig Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Lallo Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Lasam Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Pamplona Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Peñablanca Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Piat Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Rizal Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Sanchez Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Solana Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Sta Ana Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Sta Praxedes Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'StaTeresita Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Sto Niño Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Tuao Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Tuguegarao Police Station',
             'unit_office_id' => '1',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Alicia Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Angadanan Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Aurora Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Benito Soiliven Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Burgos Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Cabagan Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Cabatuan Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Cauayan Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Cordon Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Delfin Albano Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Dinapigue Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Divilacan Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Echague Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Gamu Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Ilagan Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Jones Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Luna Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Maconacon Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Mallig Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Naguillian Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Palanan Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Quezon Police Station(ISABELA)',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Quirino Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Ramon Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Reina Mercedes Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Roxas Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'San Agustin Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'San Guillermo Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'San Isidro Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'San Manuel Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'San Mariano Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'San Mateo Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'San Pablo Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Santa Maria Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Sto Tomas Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Tumauni Police Station',
             'unit_office_id' => '2',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Alfonso Castaneda Police Station',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Ambaguio Police Station',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Aritao Police Station',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Bagabag Police Station',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Bambang Police Station',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Bayombong Police Station',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Diadi Police Station',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Dupax del Norte Police Station',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Dupax del Sur Police Station',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Kasibu Police Station',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Kayapa Police Station',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Quezon Police Station(NUEVA VIZCAYA)',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Santa Fe Police Station',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Solano Police Station',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Villaverde Police Station',
             'unit_office_id' => '3',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Aglipay Police Station',
             'unit_office_id' => '4',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Cabarroguis Police Station',
             'unit_office_id' => '4',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Diffun Police Station',
             'unit_office_id' => '4',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Maddela Police Station',
             'unit_office_id' => '4',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Nagtipunan Police Station',
             'unit_office_id' => '4',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Saguday Police Station',
             'unit_office_id' => '4',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Santiago City Police Station 1',
             'unit_office_id' => '5',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Santiago City Police Station 2',
             'unit_office_id' => '5',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Santiago City Police Station 3',
             'unit_office_id' => '5',
              
         ]);
 
-        stations::create([
+        Station::create([
             'name' => 'Santiago City Police Station 4',
             'unit_office_id' => '5',
              

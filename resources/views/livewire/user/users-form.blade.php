@@ -85,35 +85,36 @@
                         </div>
                     </div>
                     <div class="col-span-2 sm:col-span-1 w-1/2">
-                            <label for="rank" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rank</label>
-                            <select wire:model.live ="rank" name="rank" id="rank" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                               <option value="">Select Rank</option>
-                                    @foreach($ranks as $rank)
-                                        <option value="{{ $rank->id }}">{{ $rank->name }}</option>
-                                    @endforeach
+                        <label for="rank" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rank</label>
+                        <select wire:model.live ="selected_rank_id" name="selected_rank_id" id="selected_rank_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                            <option value="">Select Rank</option>
+                                @foreach($ranks as $rank)
+                                    <option value="{{ $rank->id }}">{{ $rank->name }}</option>
+                                @endforeach
 
-                            </select>
-                        </div>
+                        </select>
+                    </div>
                     <div class="flex justify-between space-x-4">
                         <div class="col-span-2 sm:col-span-1 w-1/2">
-                            <label for="unit_office" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit/Offices</label>
-                            <select name="unit_office_id" wire:change ="updateStationsList" wire:model ="selected_unit_office_id" id="unit_office_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                            <label for="unit_office" class="block mb-2 text-sm font-medium text-gray-900">Unit/Offices</label>
+                            <select name="unit_office_id" wire:change="updateStationsList" wire:model.lazy="selected_unit_office_id" id="unit_office_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                                <option value="">Select Unit Office</option>
                                     @foreach($unit_offices as $unit_office)
                                         <option value="{{ $unit_office->id }}">{{ $unit_office->unit_office_name }}</option>
                                     @endforeach
                             </select>
                         </div>
-                        <div class="col-span-2 sm:col-span-1 w-1/2">
-                            <label for="station" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Station
+                        <div class="col-span-2 sm:col-span-1 w-1/2" wire:init="loadInitialStations">
+                            <label for="selected_station_id" class="block mb-2 text-sm font-medium text-gray-900">Station
                                 {{ $selected_station_id }}
                             </label>
-                            <select wire:model ="selected_station_id" name="station_id" id="station_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                                    <option value="">Select Station</option>
-                                    <option value="all">All</option>
-                                    @foreach($stations as $station)
-                                        <option {{ ($selected_station_id=== $station->id) ? "selected":"" }}  value="{{ $station->id }}">{{ $station->name }}</option>
-                                    @endforeach
+                            <select wire:model.live="selected_station_id" class="block mb-2 text-sm font-medium text-gray-900">
+                                <option value="all">All</option>
+                                @if($stations)
+                                @foreach($stations as $station)
+                                    <option @if($selected_station_id === $station->id) selected @endif value="{{ $station->id }}"> {{ $station->name }}</option>
+                                @endforeach
+                                @endif
                             </select>
                         </div>
                     </div>

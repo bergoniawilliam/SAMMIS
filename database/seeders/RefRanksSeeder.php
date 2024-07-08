@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\RefRanks;
+use App\Models\RefRank;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,71 +12,71 @@ class RefRanksSeeder extends Seeder
      */
     public function run(): void
     {
-       RefRanks::create([
+       RefRank::create([
             'name' => 'POLICE GENERAL',
             'abbvr' => 'PGEN',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'POLICE LIEUTENANT GENERAL',
             'abbvr' => 'PLTGEN',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'POLICE MAJOR GENERAL',
             'abbvr' => 'PMGEN',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'POLICE BRIGADIER GENERAL',
             'abbvr' => 'PBGEN',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'POLICE COLONEL',
             'abbvr' => 'PCOL',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'POLICE LIEUTENANT COLONEL',
             'abbvr' => 'PLTCOL',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'POLICE MAJOR',
             'abbvr' => 'PMAJ',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'POLICE CAPTAIN',
             'abbvr' => 'PCPT',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'POLICE LIEUTENANT',
             'abbvr' => 'PLT',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'Police Executive Master Sergeant',
             'abbvr' => 'PEMS',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'Police Chief Master Sergeant',
             'abbvr' => 'PCMS',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'Police Senior Master Sergeant',
             'abbvr' => 'PSMS',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'Police Master Sergeant',
             'abbvr' => 'PMSg',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'Police Staff Sergeant',
             'abbvr' => 'PSSg',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'Police Corporal',
             'abbvr' => 'PCpl',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'Patrolman/Patrolwoman',
             'abbvr' => 'Pat',
         ]);
-        RefRanks::create([
+        RefRank::create([
             'name' => 'NON-UNIFORMED PERSONNEL',
             'abbvr' => 'NUP',
         ]);
