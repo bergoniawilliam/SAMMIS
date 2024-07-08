@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Station;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Unit_Offices extends Model
+class UnitOffice extends Model
 {
     use HasFactory;
       protected $table = 'unit_offices';
@@ -14,4 +14,9 @@ class Unit_Offices extends Model
         'unit_office_name',
         'abbvr',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

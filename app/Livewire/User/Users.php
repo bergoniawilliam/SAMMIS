@@ -14,23 +14,13 @@ class Users extends Component
     public $userId;
     use WithPagination;
     
-    #[On('refresList')]
-    public function render()
-    {
-        $this->users = User::all();
-        return view('livewire.user.users')
-            ->extends('layouts.app')
-            ->section('content');
-    }
+    
 
     public function addUser(){
         $this->dispatch('addUserForm');
     }
 
-    public function editUser($id)
-    {
-        $this->dispatch('populateForm', userId: $id);
-    }
+   
 
     public function deleteUser($id)
     {
@@ -46,6 +36,18 @@ class Users extends Component
     public function clearSuccessMessage()
     {
         session()->forget('message');
+    }
+    #[On('refresList')]
+    public function render()
+    {
+        $this->users = User::all();
+        return view('livewire.user.users')
+            ->extends('layouts.app')
+            ->section('content');
+    }
+     public function editUser($id)
+    {
+        $this->dispatch('populateForm', userId: $id);
     }
    
 }
