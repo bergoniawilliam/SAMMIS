@@ -55,7 +55,7 @@ class User extends Authenticatable
     }
     public function rank()
     {
-    return $this->belongsTo(RefRank::class, 'rank');
+        return $this->belongsTo(RefRank::class, 'rank');
     }
     
     public function station()

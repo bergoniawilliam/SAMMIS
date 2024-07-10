@@ -44,7 +44,6 @@ class Users extends Component
     #[On('refresList')]
     public function render()
     {
-        $this->dispatch('clearSuccessMessage');
         $this->users = User::all();
         return view('livewire.user.users')
             ->extends('layouts.app')

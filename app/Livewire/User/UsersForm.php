@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\On;
+use Illuminate\Validation\Rule;
 use App\Models\UnitOffice;
 use App\Models\RefRank;
 use App\Models\Station;
@@ -23,40 +24,41 @@ class UsersForm extends Component
     public $unit_offices;
     public $ranks;
     public $stations;
-    public $selected_unit_office_id;
-    public $unit_office_id;
-    public $station_id;
-    public $selected_station_id;
+    public $selected_unit_office_id=null;
+    public $selected_station_id="all";
     public $selected_rank_id=null;
-
-protected $listeners = [
-        'populateForm' => 'handlePopulateForm',
-        ];
+    public $selected_station="All";
         
-    protected $rules = [
-        'email' => 'required|email|string',
-        'first_name' => 'required',
-        'last_name' => 'required',
-        'first_name' => 'required',
-        'last_name' => 'required',
-   
-    ];
+    protected function rules()
+    {
+        return [
+            'email' => ['required', 'email', 'string', $this->update_mode ? Rule::unique('users')->ignore($this->user->id) : 'unique:users,email'],
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'selected_station' => ['required', function ($attribute, $value, $fail) {
+                if ($value !== 'All' && !in_array($value, $this->stations->pluck('name')->toArray())) {
+                    $fail('The selected station is invalid.');
+                }
+            }],
+        ];
+    }
 
     #[On('addUserForm')]
     public function createForm(){
         $this->update_mode = false;
         //clear the fields here
+        $this->resetMessage();
         $this->clearForm();
 
     }
 
-   
-    public function handlePopulateForm($userId){
+    #[On('populateForm')]
+    public function populateForm($userId){
+        $this->resetMessage();
         $this->update_mode = true;
-        $this->loadInitialStations();
         $this->user = User::find($userId);
+        
         if($this->user){       
-            // dd($this->user);
             $this->email = $this->user->email;
             $this->first_name = $this->user->first_name;
             $this->middle_name = $this->user->middle_name;
@@ -64,9 +66,9 @@ protected $listeners = [
             $this->qualifier = $this->user->qualifier;
             $this->selected_rank_id = $this->user->rank_id;
             $this->selected_unit_office_id = $this->user->unit_office_id;
-            $this->selected_station_id = $this->user->station_id;  
+            $this->loadInitialStations($this->user->station_id);
+            $this->selected_station = $this->user->station ? $this->user->station->name : "All";
         }
-         $this->updateStationsList();
     }
 
     #[On('deleteUserForm')]
@@ -89,7 +91,7 @@ protected $listeners = [
         }else{
             $this->store();
         }
-        $this->dispatch('refresList');
+        // $this->dispatch('refresList');
     }
     public function store()
     {
@@ -102,8 +104,8 @@ protected $listeners = [
             'middle_name' => $this->middle_name,
             'last_name' => $this->last_name,
             'qualifier' => $this->qualifier,
-            'station_id' => $this->selected_station_id,
-            'unit_office_id' => $this->selected_unit_office_id,
+            'station_id' => $this->getStationId($this->selected_station),
+            'unit_office_id' => $this->selected_unit_office_id ? $this->selected_unit_office_id : null,
         ]);
    
        
@@ -114,6 +116,7 @@ protected $listeners = [
     public function updateUser()
     {
         $this->validate();
+        //  dd($this->getStationId($this->selected_station));
         $this->user->update([
             'email' => $this->email,
             'first_name' => $this->first_name,
@@ -121,10 +124,17 @@ protected $listeners = [
             'last_name' => $this->last_name,
             'qualifier' => $this->qualifier,
             'rank_id' => $this->selected_rank_id,
-            'station_id' => $this->selected_station_id,
-            'unit_office_id' => $this->selected_unit_office_id
+            'station_id' => $this->getStationId($this->selected_station),
+            'unit_office_id' => $this->selected_unit_office_id ? $this->selected_unit_office_id : null,
         ]);
         session()->flash('message', 'User has been updated successfully!');
+    }
+
+    public function getStationId($station_name){
+        $station = Station::where("name", $station_name)->pluck('id');
+        if(count($station) > 0){
+            return Station::where("name", $station_name)->pluck('id')[0];
+        }
     }
 
     public function destroyUser(){
@@ -132,47 +142,44 @@ protected $listeners = [
         $this->user->delete();
         $this->clearForm();
     }
-    public function mount()
-    {
-       $this->stations = Station::all(); 
-    }
+
     public function render()
-    {
-        $this->unit_offices = UnitOffice::all();
+    {  
         $this->ranks = RefRank::all();
-        $this->stations = Station::all();
+        $this->unit_offices = UnitOffice::orderBy('unit_office_name','asc')->get();
+        
+        $this->loadInitialStations();
         return view('livewire.user.users-form');
         
     }
 
 
-    public function updatedSelectedUnitOfficeId($selected_unit_office_id)
+    public function updatedSelectedUnitOfficeId($selected_unit_office_id, $station_id = null)
     {
-        $this->stations = Station::where('unit_office_id', $selected_unit_office_id)->get(); 
+        $this->stations = null;
+        $this->stations = Station::where('unit_office_id', $selected_unit_office_id)->get();
     }
 
-    public function loadInitialStations()
+    public function loadInitialStations($station_id = null)
     { 
-       $this->stations = Station::where('unit_office_id', $this->selected_unit_office_id)->get();
+        $unit_office = UnitOffice::find($this->selected_unit_office_id);
+        if ($unit_office) {
+            $this->stations = $unit_office->stations()->orderBy('name', 'asc')->get();
+        }
+        else
+        {
+            $this->stations = Station::all();
+        }
     }
 
-    public function updateStationsList()
-    {  
-        $this->stations = Station::where('unit_office_id', $this->selected_unit_office_id)->get();
-      
-    }
-     
-
-
-    public function clearSuccessMessage()
+    public function resetMessage()
     {
-    
-        $this->loadInitialStations();
         session()->forget('message');
     }
+    
     public function clearForm(){
         $this->update_mode = false;
-        $this->reset(['id','email', 'first_name', 'middle_name', 'last_name', 'qualifier','selected_unit_office_id','selected_station_id']);
+        $this->reset(['id','email', 'first_name', 'middle_name', 'last_name', 'qualifier','selected_rank_id','selected_unit_office_id','selected_station','stations']);
     }
 
 }

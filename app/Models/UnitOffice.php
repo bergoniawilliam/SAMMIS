@@ -19,4 +19,9 @@ class UnitOffice extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function stations()
+    {
+        return $this->hasMany(Station::class);
+    }
 }
