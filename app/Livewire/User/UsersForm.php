@@ -9,6 +9,7 @@ use Livewire\Attributes\On;
 use App\Models\UnitOffice;
 use App\Models\RefRank;
 use App\Models\Station;
+
 class UsersForm extends Component
 {
     public $user;
@@ -22,11 +23,16 @@ class UsersForm extends Component
     public $unit_offices;
     public $ranks;
     public $stations;
-    public $selected_unit_office_id=null;
+    public $selected_unit_office_id;
     public $unit_office_id;
-    public $selected_station_id=null;
+    public $station_id;
+    public $selected_station_id;
     public $selected_rank_id=null;
 
+protected $listeners = [
+        'populateForm' => 'handlePopulateForm',
+        ];
+        
     protected $rules = [
         'email' => 'required|email|string',
         'first_name' => 'required',
@@ -41,11 +47,13 @@ class UsersForm extends Component
         $this->update_mode = false;
         //clear the fields here
         $this->clearForm();
+
     }
 
-    #[On('populateForm')]
-    public function populateForm($userId){
+   
+    public function handlePopulateForm($userId){
         $this->update_mode = true;
+        $this->loadInitialStations();
         $this->user = User::find($userId);
         if($this->user){       
             // dd($this->user);
@@ -56,9 +64,9 @@ class UsersForm extends Component
             $this->qualifier = $this->user->qualifier;
             $this->selected_rank_id = $this->user->rank_id;
             $this->selected_unit_office_id = $this->user->unit_office_id;
-            $this->selected_station_id = $this->user->station_id;
-            $this->updatedSelectedUnitOfficeId($this->user->unit_office_id);
+            $this->selected_station_id = $this->user->station_id;  
         }
+         $this->updateStationsList();
     }
 
     #[On('deleteUserForm')]
@@ -124,37 +132,42 @@ class UsersForm extends Component
         $this->user->delete();
         $this->clearForm();
     }
-    public function render()
-    {
-        return view('livewire.user.users-form');
-    }
-
     public function mount()
+    {
+       $this->stations = Station::all(); 
+    }
+    public function render()
     {
         $this->unit_offices = UnitOffice::all();
         $this->ranks = RefRank::all();
+        $this->stations = Station::all();
+        return view('livewire.user.users-form');
+        
     }
+
 
     public function updatedSelectedUnitOfficeId($selected_unit_office_id)
     {
-        $this->stations = Station::where('unit_office_id', $selected_unit_office_id)->get();
+        $this->stations = Station::where('unit_office_id', $selected_unit_office_id)->get(); 
     }
 
     public function loadInitialStations()
-    {
-        $this->stations = Station::all();
+    { 
+       $this->stations = Station::where('unit_office_id', $this->selected_unit_office_id)->get();
     }
 
     public function updateStationsList()
-    {
-        // $this->stations=null;
+    {  
         $this->stations = Station::where('unit_office_id', $this->selected_unit_office_id)->get();
-        $this->selected_station_id = null;
+      
     }
+     
 
 
     public function clearSuccessMessage()
     {
+    
+        $this->loadInitialStations();
         session()->forget('message');
     }
     public function clearForm(){

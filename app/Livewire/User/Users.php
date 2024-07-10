@@ -4,6 +4,7 @@ namespace App\Livewire\User;
 
 use Livewire\Component;
 use App\Models\User;
+use App\Models\Station;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
 
@@ -36,10 +37,14 @@ class Users extends Component
     public function clearSuccessMessage()
     {
         session()->forget('message');
+        $this->dispatch('loadInitialStations');
+       
+        
     }
     #[On('refresList')]
     public function render()
     {
+        $this->dispatch('clearSuccessMessage');
         $this->users = User::all();
         return view('livewire.user.users')
             ->extends('layouts.app')

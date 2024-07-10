@@ -16,7 +16,7 @@
                     </h3>
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                        data-modal-toggle="user-modal" wire:click="clearSuccessMessage">
+                        data-modal-toggle="user-modal" wire:click="clearSuccessMessage"  >
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -96,25 +96,22 @@
                     </div>
                     <div class="flex justify-between space-x-4">
                         <div class="col-span-2 sm:col-span-1 w-1/2">
-                            <label for="unit_office" class="block mb-2 text-sm font-medium text-gray-900">Unit/Offices</label>
-                            <select name="unit_office_id" wire:change="updateStationsList" wire:model.lazy="selected_unit_office_id" id="unit_office_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                            <label for="unit_office" class="block mb-2 text-sm font-medium text-gray-900">Unit/Offices  {{ $selected_unit_office_id }}</label>
+                            <select name="selected_unit_office_id" wire:model.live="selected_unit_office_id" id="selected_unit_office_id"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                                <option value="">Select Unit Office</option>
                                     @foreach($unit_offices as $unit_office)
                                         <option value="{{ $unit_office->id }}">{{ $unit_office->unit_office_name }}</option>
                                     @endforeach
                             </select>
                         </div>
-                        <div class="col-span-2 sm:col-span-1 w-1/2" wire:init="loadInitialStations">
+                        <div class="col-span-2 sm:col-span-1 w-1/2">
                             <label for="selected_station_id" class="block mb-2 text-sm font-medium text-gray-900">Station
                                 {{ $selected_station_id }}
                             </label>
-                            <select wire:model.live="selected_station_id" class="block mb-2 text-sm font-medium text-gray-900">
-                                <option value="all">All</option>
-                                @if($stations)
+                            <select wire:model.lazy="selected_station_id"  id="selected_station_id" name="selected_station_id" class="block mb-2 text-sm font-medium text-gray-900">
                                 @foreach($stations as $station)
-                                    <option @if($selected_station_id === $station->id) selected @endif value="{{ $station->id }}"> {{ $station->name }}</option>
-                                @endforeach
-                                @endif
+                                    <option value="{{ $station->id }}"> {{ $station->name }}</option>
+                                 @endforeach
                             </select>
                         </div>
                     </div>
