@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Livewire\Counter;
 use App\Livewire\Dashboard;
-use App\Livewire\User\Users;
+use App\Livewire\Users\Users;
+use App\Livewire\Users\UsersAdd;
+use App\Livewire\Users\UsersEdit;
+use App\Livewire\Users\UsersDelete;
 
 Route::get('/', function () {
     if(Auth::check()){
@@ -28,5 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/counter', Counter::class)->name('counter');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/users', Users::class)->name('users');
-
+    Route::get('/users/add', UsersAdd::class)->name('users.add');
+    Route::get('/users/edit/{id}', UsersEdit::class)->name('users.edit');
+    Route::get('/users/delete/{id}', UsersDelete::class)->name('users.delete');
 });
