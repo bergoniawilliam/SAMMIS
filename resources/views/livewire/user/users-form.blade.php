@@ -20,7 +20,7 @@
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2"d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                         </svg>
                         <span class="sr-only">Close modal</span>
                     </button>
@@ -32,9 +32,8 @@
                     </div>
                 @endif
 
-                <form class="p-4 md:p-5" wire:submit.prevent="save">
-                    <label for="email"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                <div class="p-4 md:p-5">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                     <input type="email" wire:model.lazy="email" id="email" name="email"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                         placeholder="Type Email">
@@ -44,9 +43,7 @@
 
                     <div class="flex justify-between space-x-4">
                         <div class="w-1/2">
-                            <label for="first_name"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name
-                            </label>
+                            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
                             <input type="text" wire:model.lazy="first_name" id="first_name" name="first_name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 placeholder="Type First Name">
@@ -55,8 +52,7 @@
                             @enderror
                         </div>
                         <div class="w-1/2">
-                            <label for="middle_name"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Middle Name</label>
+                            <label for="middle_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Middle Name</label>
                             <input type="text" wire:model.lazy="middle_name" id="middle_name" name="middle_name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 placeholder="Type Middle Name">
@@ -67,8 +63,7 @@
                     </div>
                     <div class="flex justify-between space-x-4">
                         <div class="w-1/2">
-                            <label for="last_name"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
+                            <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
                             <input type="text" wire:model.lazy="last_name" id="last_name" name="last_name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 placeholder="Type Last Name">
@@ -77,8 +72,7 @@
                             @enderror
                         </div>
                         <div class="w-1/2">
-                            <label for="qualifier"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qualifier</label>
+                            <label for="qualifier" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qualifier</label>
                             <input type="text" wire:model.lazy="qualifier" id="qualifier" name="qualifier"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 placeholder="Type Qualifier">
@@ -86,36 +80,39 @@
                     </div>
                     <div class="col-span-2 sm:col-span-1 w-1/2">
                         <label for="rank" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rank</label>
-                        <select wire:model.live ="selected_rank_id" name="selected_rank_id" id="selected_rank_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                        <select wire:model.live="selected_rank_id" name="selected_rank_id" id="selected_rank_id"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                             <option value="">Select Rank</option>
-                                @foreach($ranks as $rank)
-                                    <option value="{{ $rank->id }}">{{ $rank->name }}</option>
-                                @endforeach
-
+                            @foreach($ranks as $rank)
+                                <option value="{{ $rank->id }}">{{ $rank->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="flex justify-between space-x-4">
                         <div class="col-span-2 sm:col-span-1 w-1/2">
                             <label for="unit_office" class="block mb-2 text-sm font-medium text-gray-900">Unit/Offices  {{ $selected_unit_office_id }}</label>
-                            <select name="selected_unit_office_id" wire:change="updatedSelectedUnitOfficeId($selected_unit_office_id)" wire:model.live="selected_unit_office_id" id="selected_unit_office_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                               <option value="">All</option>
-                                    @foreach($unit_offices as $unit_office)
-                                        <option value="{{ $unit_office->id }}">{{ $unit_office->unit_office_name }}</option>
-                                    @endforeach
+                            <button wire:ignore wire:click="updateStations($selected_unit_office_id)">Change</button>
+                            <select name="selected_unit_office_id" wire:model.live="selected_unit_office_id" id="selected_unit_office_id"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                                <option value="">All</option>
+                                @foreach($unit_offices as $unit_office)
+                                    <option value="{{ $unit_office->id }}">{{ $unit_office->unit_office_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-span-2 sm:col-span-1 w-1/2">
                             <label for="selected_station_id" class="block mb-2 text-sm font-medium text-gray-900">Station
                                 {{ $selected_station }}
                             </label>
-                            <input type="text" wire:model="selected_station" list="datalistStations" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"/>
+                            <input type="text" wire:model="selected_station" list="datalistStations"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
                             <datalist id="datalistStations">
                                 <option value="All">
                                 @if($stations)
-                                @foreach($stations as $station)
-                                    <option value="{{ $station->name }}">
-                                 @endforeach
-                                 @endif
+                                    @foreach($stations as $station)
+                                        <option value="{{ $station->name }}">
+                                    @endforeach
+                                @endif
                             </datalist>
                             @error('selected_station')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -123,12 +120,11 @@
                         </div>
                     </div>
                     <div class="col-span-2">
-                        <button type="submit"
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-4">
+                        <button wire:click="save()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-4">
                             Save
                         </button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -150,7 +146,7 @@
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2"d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                         </svg>
                         <span class="sr-only">Close modal</span>
                     </button>
@@ -170,7 +166,7 @@
                                 <td>{{ $first_name }}</td>
                             </tr>
                             <tr>
-                                <td>Mddle Name</td>
+                                <td>Middle Name</td>
                                 <td>{{ $middle_name }}</td>
                             </tr>
                             <tr>
@@ -178,15 +174,17 @@
                                 <td>{{ $last_name }}</td>
                             </tr>
                             <tr>
-                                <td>Qualifer</td>
+                                <td>Qualifier</td>
                                 <td>{{ $qualifier }}</td>
                             </tr>
-                            
                         </tbody>
                     </table>
                     <div class="flex justify-end">
-                        <button class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" wire:click="destroyUser" data-modal-toggle="delete-user-modal">Yes</button>
-                        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600" data-modal-toggle="delete-user-modal">No</button>
+                        <button class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+                            wire:click="destroyUser" data-modal-toggle="delete-user-modal">Yes</button>
+                        <button type="button"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600"
+                            data-modal-toggle="delete-user-modal">No</button>
                     </div>
                 </div>
             </div>

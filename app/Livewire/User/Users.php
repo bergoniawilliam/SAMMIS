@@ -10,7 +10,7 @@ use Livewire\Attributes\On;
 
 class Users extends Component
 {
-    public $search = '';
+    
     public $users;
     public $userId;
     use WithPagination;

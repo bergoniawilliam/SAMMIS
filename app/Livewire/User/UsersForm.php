@@ -91,7 +91,7 @@ class UsersForm extends Component
         }else{
             $this->store();
         }
-        // $this->dispatch('refresList');
+        $this->dispatch('refresList');
     }
     public function store()
     {
@@ -154,7 +154,7 @@ class UsersForm extends Component
     }
 
 
-    public function updatedSelectedUnitOfficeId($selected_unit_office_id, $station_id = null)
+    public function updateStations($selected_unit_office_id, $station_id = null)
     {
         $this->stations = null;
         $this->stations = Station::where('unit_office_id', $selected_unit_office_id)->get();

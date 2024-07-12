@@ -8,7 +8,7 @@
         </button>
     </div><br>    
     <div>
-        <input wire:model.debounce.300ms="search" type="text" placeholder="Search by Name or Email" class="w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-primary-500 focus:border-primary-500 mb-4" />
+        
         @if(session()->has('message'))
         <div id="alert-3" class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50" role="alert">
             <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
