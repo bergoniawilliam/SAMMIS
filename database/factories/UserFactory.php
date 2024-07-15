@@ -23,12 +23,22 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $suffixes = ['Jr.', 'Sr.', null];
+        $suffix = $suffixes[array_rand($suffixes)];
         return [
-            'name' => fake()->name(),
+            'first_name' => fake()->name(),
+            'last_name' => fake()->name(),
+            'middle_name' => fake()->name(),
+            'qualifier' => $suffix,
+            'rank_id' => rand(1, 17),
+            'role' => 'user',
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'unit_office_id' =>null,
+            'station_id' =>null,
+            'isActive' => rand(0,1) == 1,
         ];
     }
 

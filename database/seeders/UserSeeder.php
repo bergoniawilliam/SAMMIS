@@ -48,5 +48,9 @@ class UserSeeder extends Seeder
       $third_user->unit_office_id = 6;
       $third_user->isActive = '0';
       $third_user->save();
+
+      User::factory()
+      ->count(50)
+      ->create();
     }
 }

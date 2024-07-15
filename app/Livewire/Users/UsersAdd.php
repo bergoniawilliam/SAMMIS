@@ -18,10 +18,10 @@ class UsersAdd extends Component
     public $unit_offices;
     public $ranks;
     public $stations;
-    public $selected_station_name="";
+    public $selected_station_name="All";
     public $selected_rank_id;
-    public $selected_unit_office_id="";
-    public $isActive="1";
+    public $selected_unit_office_id=null;
+    public $isActive=false;
     public $users;
 
     public function render()
@@ -43,7 +43,7 @@ class UsersAdd extends Component
         }
         
     }
-     public function loadInitialStations()
+    public function loadInitialStations()
     { 
        
         $unit_office = UnitOffice::find($this->selected_unit_office_id);
@@ -68,7 +68,7 @@ class UsersAdd extends Component
             }],
         ];
     }
-    public function save()
+    public function store()
     {
         $this->validate();
         User::create([
@@ -93,10 +93,18 @@ class UsersAdd extends Component
         if(count($station) > 0){
             return Station::where("name", $station_name)->pluck('id')[0];
         }
+        else
+        {
+            return 0;
+        }
     }
     public function clearSuccessMessage()
     {
         session()->forget('message');  
+    }
+
+    public function clearForm(){
+        $this->reset(['id','email', 'first_name', 'middle_name', 'last_name', 'qualifier','selected_rank_id','selected_unit_office_id','selected_station_name']);
     }
     
 }

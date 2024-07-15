@@ -50,8 +50,9 @@ class UsersDelete extends Component
      }
     public function destroy()
     {
-       $this->user->delete();
-       session()->flash('success', 'User deleted successfully.');
-       return redirect('users');
+        $full_name = $this->user->first_name . ' ' . $this->user->last_name;
+        $this->user->delete();
+        session()->flash('deleted-user-success-message', $full_name . 'has been deleted successfully.');
+        return redirect('users');
     }   
 }

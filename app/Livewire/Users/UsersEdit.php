@@ -11,10 +11,10 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 class UsersEdit extends Component
 {
-     public $user;
+    public $user;
     public $id;
     public $email = "";
-    public $isActive;
+    public $isActive=false;
     public $first_name = "";
     public $middle_name = "";
     public $last_name = "";
@@ -45,6 +45,10 @@ class UsersEdit extends Component
 
     public function render()
     {
+        if (!$this->user)
+        {
+            abort(404);
+        }
         $this->ranks = RefRank::all();
         $this->unit_offices = UnitOffice::all();
         return view('livewire.users.users-edit')
@@ -64,9 +68,9 @@ class UsersEdit extends Component
             $this->qualifier = $this->user->qualifier;
             $this->selected_rank_id = $this->user->rank_id;
             $this->selected_unit_office_id = $this->user->unit_office_id;
-            // $this->loadInitialStations($this->user->station_id);
+            $this->loadInitialStations($this->user->station_id);
             $this->selected_station_name = $this->user->station ? $this->user->station->name : "All";
-             $this->isActive = $this->user->isActive;
+            $this->isActive = $this->user->isActive;
         }
     }
      public function updatedSelectedUnitOfficeId($selected_unit_office_id, $station_id = null)
@@ -96,12 +100,15 @@ class UsersEdit extends Component
         if(count($station) > 0){
             return Station::where("name", $station_name)->pluck('id')[0];
         }
+        else
+        {
+            return 0;
+        }
     }
 
     public function update()
     {
         $this->validate();
-        //  dd($this->getStationId($this->selected_station));
        
         $this->user->update([
             'email' => $this->email,

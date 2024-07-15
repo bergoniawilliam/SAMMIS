@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('station_id')->nullable();
             $table->integer('unit_office_id')->nullable();
             $table->string('role')->nullable();
-            $table->boolean('isActive')->nullable();
+            $table->boolean('isActive');
             $table->rememberToken();
             $table->timestamps();
         });
