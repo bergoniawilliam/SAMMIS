@@ -51,6 +51,7 @@ class UsersDelete extends Component
     public function destroy()
     {
        $this->user->delete();
+       session()->flash('success', 'User deleted successfully.');
        return redirect('users');
     }   
 }

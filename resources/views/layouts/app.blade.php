@@ -115,6 +115,7 @@
         <div class="p-4 sm:ml-64">
             <main class="mt-14">
                 @yield('content')
+                
             </main>
         </div>
     </div>

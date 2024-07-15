@@ -48,6 +48,7 @@ class UsersEdit extends Component
         return view('livewire.users.users-edit')
             ->extends('layouts.app')
             ->section('content');
+            
     }
     public function mount($id)
     {
