@@ -131,5 +131,7 @@
         </div>
     </div>
     @livewireScripts
+    <script src="/vendor/jquery.js"></script>
+    @stack('scripts')
 </body>
 </html>

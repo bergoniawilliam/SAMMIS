@@ -7,14 +7,19 @@ use App\Models\UnitOffice;
 use App\Models\Station;
 use Livewire\Component;
 
+use App\Models\Region;
+use App\Models\Province;
+use App\Models\City;
+use App\Models\Barangay;
+
 class MotorcyclesAdd extends Component
 { 
-    public $unit_offices; 
-    public $ranks;
-    public $stations;
-    public $selected_unit_office_id=null;
-    public $selected_station_name="";
-    public $selected_rank_id=null;
+    public $selected_region_name="";
+    public $regions;
+    public $provinces;
+    public $cities;
+    public $barangays;
+
     public function render()
     {
         $this->motorcycles = Motorcycle::all();
@@ -23,15 +28,38 @@ class MotorcyclesAdd extends Component
         return view('livewire.motorcycles.motorcycles-add')->extends('layouts.app')
             ->section('content');
     }
-    public function loadInitialStations()
+    public function loadInitAddresses()
     { 
-        $unit_office = UnitOffice::find($this->selected_unit_office_id);
-        if ($unit_office) {
-            $this->stations = $unit_office->stations()->orderBy('name', 'asc')->get();
+        $this->regions = Region::all();
+        // $this->provinces = Province::all();
+        // $this->cities = City::all();
+        // $this->barangays = Barangay::all();
+        // dd(Province::where('region_id', 03)->get()->pluck('name')[0]);  get specific field and get the position of the value from the list
+    }
+
+    public function updateProvincesList()
+    {
+        if($this->selected_region_name !== "")
+        {
+            $region = Region::where('name', $this->selected_region_name)->get();
+            $region_id = count($region) ? $region->pluck('region_id') : null;
+            $this->provinces = $region_id ? Province::where('region_id', $region_id)->get() : null;
         }
         else
         {
-            $this->stations = Station::all();
+            $this->provinces = null;
+            $this->cities = null;
+            $this->barangays = null;
         }
+    }
+
+    public function updateCitiesList()
+    {
+        
+    }
+
+    public function updateBarangaysList()
+    {
+        
     }
 }

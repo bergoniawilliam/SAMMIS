@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Yajra\Address\HasAddress;
 
 class Motorcycle extends Model
 {
-    use HasFactory;
+    use HasFactory, HasAddress;
     protected $table = 'motor';
     
        protected $fillable = [
