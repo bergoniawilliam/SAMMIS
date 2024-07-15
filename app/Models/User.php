@@ -25,8 +25,9 @@ class User extends Authenticatable
         'middle_name',
         'last_name',
         'qualifier',
-        'rank',
+        'rank_id',
         'station_id',
+        'isActive',
         'unit_office_id',
          'role',
     ];

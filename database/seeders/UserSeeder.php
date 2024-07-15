@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
       $first_user->middle_name = 'Dorado';
       $first_user->last_name = 'Bergonia';
       $first_user->qualifier = 'Jr';
+      $first_user->isActive = '1';
       $first_user->save();
 
       $second_user = new User();
@@ -32,6 +33,7 @@ class UserSeeder extends Seeder
       $second_user->qualifier = '';
       $second_user->station_id = 78;
       $second_user->unit_office_id = 3;
+      $second_user->isActive = '1';
       $second_user->save();
 
       $third_user = new User();
@@ -44,6 +46,7 @@ class UserSeeder extends Seeder
       $third_user->qualifier = '';
       $third_user->station_id = 6;
       $third_user->unit_office_id = 6;
+      $third_user->isActive = '0';
       $third_user->save();
     }
 }

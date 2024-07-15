@@ -1,10 +1,10 @@
 
 <div>
     <div class="flex justify-between item-center">
-        <h1 class="text-2xl font-bold">USERS</h1>
+        <h1 class="text-2xl font-bold">MOTORCYCLES</h1>
     
-        <a href="{{ route('users.add') }}" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-            Add User
+        <a href="{{ route('motorcycles.add') }}" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+            Add Motorcycle
         </a>
     </div><br>    
     <div>
@@ -34,37 +34,34 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Id</th>
-                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Email</th>
-                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">First Name</th>
-                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Middle Name</th>
-                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Last Name</th>
-                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Qualifier</th>
+                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Blotter No</th>
+                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">MV File No</th>
+                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Chassis No</th>
+                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Engine No</th>
+                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Status</th>
+                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Remarks</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Created At</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Actions</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                @foreach ($users as $user)
+                @foreach ($motorcycles as $motorcycle)
                     <tr>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $user->id }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $user->email }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $user->first_name }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $user->middle_name }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $user->last_name }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $user->qualifier }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $user->created_at->format('Y-m-d H:i:s') }}
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->id }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->blotterno }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->mvfile_number }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->plate_number }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->chassis_number }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->engine_number }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->status }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->remarks }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->created_at->format('Y-m-d H:i:s') }}
                         </td>
                         <td class="px-6 py-3 whitespace-nowrap">
                             <div class="flex justify-between space-x-2">
                                 <a href="/users/edit/{{$user->id}}"class="block text-white bg-blue-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" >Edit</a>
                                 <a href="/users/delete/{{$user->id}}"class="block text-white bg-red-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete</a>
-                             <!-- <label class="inline-flex items-center cursor-pointer">
-  <input type="checkbox" value="" class="sr-only peer">
-  <div class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-  <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Active</span>
-</label> -->
                             </div>
-                           
                         </td>
                     </tr>
                 @endforeach

@@ -1,9 +1,9 @@
 <div>
-     <div class="flex justify-between item-center">
-         <h1 class="text-2xl font-bold">Edit {{ $first_name }} {{ $middle_name }} {{ $last_name }} {{ $qualifier }}</h1>
+       <div class="flex justify-between item-center">
+         <h1 class="text-2xl font-bold">Add Motorcyle</h1>
       
-         <a href="{{ route('users') }}" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-               Users List
+         <a href="{{ route('motorcycles') }}" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+               Motorcyle List
          </a>
       </div>
    <div class="p-4 md:p-5">
@@ -24,30 +24,13 @@
             </button>
         </div>
         @endif
-       
-                        
-                        
-          
-                    <div class="flex justify-between space-x-4">
-                        <div class="w-1/2">
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                            <input type="email" wire:model.lazy="email" id="email" name="email"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                placeholder="Type Email">
-                            @error('email')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="w-1/2">
-                            <label for="Active" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Active
-                            </label>
-                            <label class="inline-flex items-center cursor-pointer">
-                                 <input type="checkbox"  wire:model.live="isActive" wire:change="toggleIsActive" class="sr-only peer" {{ $isActive ? 'checked' : '' }}>
-                                <div class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-green-600">
-                            </div>
-                            </label>
-                        </div>
-                    </div>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                    <input type="email" wire:model.lazy="email" id="email" name="email"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                        placeholder="Type Email">
+                    @error('email')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
 
                     <div class="flex justify-between space-x-4">
                         <div class="w-1/2">
@@ -59,7 +42,6 @@
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
                         </div>
-
                         <div class="w-1/2">
                             <label for="middle_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Middle Name</label>
                             <input type="text" wire:model.lazy="middle_name" id="middle_name" name="middle_name"
@@ -86,7 +68,7 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 placeholder="Type Qualifier">
                         </div>
-                    </div>
+                    </div> 
                     <div class="col-span-2 sm:col-span-1 w-1/2">
                         <label for="rank" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rank</label>
                         <select wire:model.live="selected_rank_id" name="selected_rank_id" id="selected_rank_id"
@@ -109,10 +91,10 @@
                             </select>
                         </div>
                         <div class="col-span-2 sm:col-span-1 w-1/2">
-                            <label for="selected_station_id"class="block mb-2 text-sm font-medium text-gray-900">Station {{ $selected_station_name }}
+                            <label for="selected_station_id" class="block mb-2 text-sm font-medium text-gray-900">Station
                             </label>
                             <input type="text" wire:model="selected_station_name" list="datalistStations"
-                                 
+                                 wire:init="loadInitialStations"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
                             <datalist id="datalistStations">
                                 <option value="All">
@@ -127,12 +109,9 @@
                             @enderror
                         </div>
                     </div>
-                    <br>
-                    
-                  
                     <div class="col-span-2">
-                        <button wire:click="update()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-4">
-                            Update
+                        <button wire:click="save()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-4">
+                            Save
                         </button>
          </div>
    </div>

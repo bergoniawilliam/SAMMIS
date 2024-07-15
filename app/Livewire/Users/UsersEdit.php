@@ -14,12 +14,13 @@ class UsersEdit extends Component
      public $user;
     public $id;
     public $email = "";
+    public $isActive;
     public $first_name = "";
     public $middle_name = "";
     public $last_name = "";
     public $qualifier = "";
     public $update_mode = false;
-    public $unit_offices;
+    public $unit_offices; 
     public $ranks;
     public $stations;
     public $selected_unit_office_id=null;
@@ -36,6 +37,7 @@ class UsersEdit extends Component
             'selected_station_name' => ['required', function ($attribute, $value, $fail) {
                 if ($value !== 'All' && !in_array($value, $this->stations->pluck('name')->toArray())) {
                     $fail('The selected station is invalid.');
+                    
                 }
             }],
         ];
@@ -52,6 +54,7 @@ class UsersEdit extends Component
     }
     public function mount($id)
     {
+  
         $this->user = User::find($id);
         if($this->user){       
             $this->email = $this->user->email;
@@ -63,6 +66,7 @@ class UsersEdit extends Component
             $this->selected_unit_office_id = $this->user->unit_office_id;
             // $this->loadInitialStations($this->user->station_id);
             $this->selected_station_name = $this->user->station ? $this->user->station->name : "All";
+             $this->isActive = $this->user->isActive;
         }
     }
      public function updatedSelectedUnitOfficeId($selected_unit_office_id, $station_id = null)
@@ -98,6 +102,7 @@ class UsersEdit extends Component
     {
         $this->validate();
         //  dd($this->getStationId($this->selected_station));
+       
         $this->user->update([
             'email' => $this->email,
             'first_name' => $this->first_name,
@@ -107,12 +112,21 @@ class UsersEdit extends Component
             'rank_id' => $this->selected_rank_id,
             'station_id' => $this->getStationId($this->selected_station_name),
             'unit_office_id' => $this->selected_unit_office_id ? $this->selected_unit_office_id : null,
+            'isActive' => $this->isActive,
         ]);
+ 
+      
         session()->flash('message', 'User has been updated successfully!');
     }
     public function clearSuccessMessage()
     {
         session()->forget('message');  
+    }
+     public function toggleIsActive()
+    {
+         $this->isActive = !$this->isActive ? 0 : 1;
+        $this->user->isActive = $this->isActive;
+
     }
      
 

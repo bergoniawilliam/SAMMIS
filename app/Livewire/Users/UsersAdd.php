@@ -19,8 +19,9 @@ class UsersAdd extends Component
     public $ranks;
     public $stations;
     public $selected_station_name="";
-    public $selected_rank_id=null;
+    public $selected_rank_id;
     public $selected_unit_office_id="";
+    public $isActive="1";
     public $users;
 
     public function render()
@@ -80,6 +81,7 @@ class UsersAdd extends Component
             'qualifier' => $this->qualifier,
             'station_id' => $this->getStationId($this->selected_station_name),
             'unit_office_id' => $this->selected_unit_office_id ? $this->selected_unit_office_id : null,
+            'isActive' => $this->isActive,
         ]);
    
        
