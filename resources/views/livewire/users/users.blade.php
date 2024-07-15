@@ -33,7 +33,7 @@
         @endif
 
         <div class="flex justify-between items-center">
-            <input wire:model.live.debounce.300ms="search" type="text" placeholder="Search"
+            <input wire:model.live.debounce.150ms="search" type="text" placeholder="Search"
                 class=" px-3 py-2 rounded-lg border focus:outline-none focus:ring-primary-500 focus:border-primary-500 mb-4" />
             @if (session()->has('deleted-user-success-message'))
                 <div id="toast-success"
@@ -66,7 +66,6 @@
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Id</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Email</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">First Name</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Middle Name</th>
@@ -79,7 +78,7 @@
             <tbody class="bg-white divide-y divide-gray-200">
                 @foreach ($users as $user)
                     <tr>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $user->id }}</td>
+                     
                         <td class="px-6 py-3 whitespace-nowrap">{{ $user->email }}</td>
                         <td class="px-6 py-3 whitespace-nowrap">{{ $user->first_name }}</td>
                         <td class="px-6 py-3 whitespace-nowrap">{{ $user->middle_name }}</td>
@@ -91,8 +90,8 @@
                             <div class="flex justify-between space-x-2">
                                 <a
                                     href="/users/edit/{{ $user->id }}"class="block text-white bg-blue-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Edit</a>
-                                <a
-                                    href="/users/delete/{{ $user->id }}"class="block text-white bg-red-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete</a>
+                                <!-- <a
+                                    href="/users/delete/{{ $user->id }}"class="block text-white bg-red-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete</a> -->
                             </div>
                         </td>
                     </tr>
@@ -100,4 +99,5 @@
             </tbody>
         </table>
     </div>
+
 </div>

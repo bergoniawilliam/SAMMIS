@@ -37,7 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users', Users::class)->name('users');
     Route::get('/users/add', UsersAdd::class)->name('users.add');
     Route::get('/users/edit/{id}', UsersEdit::class)->name('users.edit');
-    Route::get('/users/delete/{id}', UsersDelete::class)->name('users.delete');
+    // Route::get('/users/delete/{id}', UsersDelete::class)->name('users.delete');
 
     Route::get('/motorcycles', Motorcycles::class)->name('motorcycles');
     Route::get('/motorcycles/add', MotorcyclesAdd::class)->name('motorcycles.add');

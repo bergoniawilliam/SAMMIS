@@ -9,28 +9,29 @@ use Livewire\WithPagination;
 use Livewire\Attributes\On;
 class Users extends Component
 {
-    public $users;
-    public $userId;
-    public $search='';
     use WithPagination;
-    public function render()
-    { 
-        if (!$this->search) {
-        $this->users = User::all();
-        } else {
-        $this->users = User::where('email', 'LIKE', '%' . $this->search . '%')
-                   ->orWhere('first_name', 'LIKE', '%' . $this->search . '%')
-                   ->get();
-        }
-        
-        return view('livewire.users.users')->extends('layouts.app')
-        ->section('content');
-        
-    }
-   
 
-    public function updatedSearch()
+    public $search = '';
+
+
+    public function updatingSearch()
     {
-       
+        $this->resetPage();
+    }
+
+    public function render()
+    {
+        $query = User::query();
+
+        if ($this->search) {
+            $query->where('email', 'LIKE', '%' . $this->search . '%')
+                  ->orWhere('first_name', 'LIKE', '%' . $this->search . '%');
+        }
+
+        $users = $query->paginate(5);
+
+        return view('livewire.users.users', [
+            'users' => $users,
+        ])->extends('layouts.app')->section('content');
     }
 }
