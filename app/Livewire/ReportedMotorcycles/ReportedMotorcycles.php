@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Livewire\ReportedMotorcycles;
-use App\Models\MotorcycleReporter;
+use App\Models\ReportedMotorcycle;
 use App\Models\RefRank;
 use App\Models\UnitOffice;
 use Livewire\Component;
@@ -17,7 +17,7 @@ class ReportedMotorcycles extends Component
     
     public function render()
     {
-        $this->motorcycles = MotorcycleReporter::all();
+        $this->motorcycles = ReportedMotorcycle::all();
         $this->ranks = RefRank::all();
         $this->unit_offices = UnitOffice::all();
         return view('livewire.reported-motorcycles.reported-motorcycles')->extends('layouts.app')

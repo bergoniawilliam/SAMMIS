@@ -1,3 +1,3 @@
 <div>
-    {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
+    Owner: <input type="text" wire:model="owner_name" />
 </div>

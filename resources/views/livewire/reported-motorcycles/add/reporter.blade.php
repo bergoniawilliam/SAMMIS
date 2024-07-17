@@ -1,3 +1,3 @@
 <div>
-    {{-- In work, do what you enjoy. --}}
+    Reporter: <input type="text" wire:model="reporter_name" />
 </div>

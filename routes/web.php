@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/users/delete/{id}', UsersDelete::class)->name('users.delete');
 
     Route::get('/reported-motorcycles', ReportedMotorcycles::class)->name('reported-motorcycles');
-    Route::get('/reported-motorcycles/add', AddMotorPage::class)->name('reported-motorcycles-add');
+    Route::get('/reported-motorcycles/add', AddMotorPage::class)->name('reported-motorcycles.add');
     Route::get('/reported-motorcycles/edit/{$id}', EditMotorPage::class)->name('reported-motorcycles.edit');
     Route::get('/reported-motorcycles/view/{$id}', ReportedMotorcycle::class)->name('reported-motorcycles.view-reported-motorcycle');
 
