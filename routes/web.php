@@ -8,9 +8,11 @@ use App\Livewire\Users\Users;
 use App\Livewire\Users\UsersAdd;
 use App\Livewire\Users\UsersEdit;
 use App\Livewire\Users\UsersDelete;
-
 use App\Livewire\ReportedMotorcycles\ReportedMotorcycles;
-use App\Livewire\ReportedMotorcycles\AddMotorcycle;
+use App\Livewire\ReportedMotorcycles\View\ReportedMotorcycle;
+use App\Livewire\ReportedMotorcycles\Add\Motorcycle as AddMotor;
+use App\Livewire\ReportedMotorcycles\Edit\Motorcycle as EditMotor;
+
 
 Route::get('/', function () {
     if(Auth::check()){
@@ -40,7 +42,8 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/users/delete/{id}', UsersDelete::class)->name('users.delete');
 
     Route::get('/reported-motorcycles', ReportedMotorcycles::class)->name('reported-motorcycles');
-    Route::get('/reported-motorcycles/add', AddMotorcycle::class)->name('reported-motorcycles.add');
-
+    Route::get('/reported-motorcycles/add', AddMotor::class)->name('reported-motorcycles-add');
+    Route::get('/reported-motorcycles/edit/{$id}', EditMotor::class)->name('reported-motorcycles.edit');
+    Route::get('/reported-motorcycles/view/{$id}', ReportedMotorcycle::class)->name('reported-motorcycles.view-reported-motorcycle');
 
 }); 

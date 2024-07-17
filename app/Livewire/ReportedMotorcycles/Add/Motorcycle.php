@@ -4,7 +4,7 @@ namespace App\Livewire\ReportedMotorcycles\Add;
 
 use Livewire\Component;
 
-class Motorcyle extends Component
+class Motorcycle extends Component
 {
     public function render()
     {
