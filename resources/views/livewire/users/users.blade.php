@@ -71,6 +71,8 @@
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Middle Name</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Last Name</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Qualifier</th>
+                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Unit/Office</th>
+                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Station</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Created At</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Actions</th>
                 </tr>
@@ -84,6 +86,12 @@
                         <td class="px-6 py-3 whitespace-nowrap">{{ $user->middle_name }}</td>
                         <td class="px-6 py-3 whitespace-nowrap">{{ $user->last_name }}</td>
                         <td class="px-6 py-3 whitespace-nowrap">{{ $user->qualifier }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">
+                            {{ $user->unit_office ? $user->unit_office->unit_office_name : 'N/A' }}
+                        </td>
+                        <td class="px-6 py-3 whitespace-nowrap">
+                            {{ $user->station ? $user->station->name : 'N/A' }}
+                        </td>
                         <td class="px-6 py-3 whitespace-nowrap">{{ $user->created_at->format('Y-m-d H:i:s') }}
                         </td>
                         <td class="px-6 py-3 whitespace-nowrap">
@@ -100,6 +108,14 @@
         </table>
         <div>
             {{ $users->links() }}
+            <select name="" id="" wire:model.live="perPage">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="1000">1000</option>
+            </select>
         </div>
     </div>
 

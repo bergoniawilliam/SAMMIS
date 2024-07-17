@@ -37,7 +37,7 @@
                 <label for="selected_region_name"class="block mb-2 text-sm font-medium text-gray-900">
                     Region
                 </label>
-                <input type="text" wire:change="updateProvincesList()" wire:model="selected_region_name" list="datalistRegions" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
+                <input type="text" wire:input="clearProvince" wire:change="updateProvincesList()" wire:model.live="selected_region_name" list="datalistRegions" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
                 <datalist id="datalistRegions">
                     <option value="">
                     @if($regions)
@@ -52,7 +52,7 @@
                 <label for="selected_province_name"class="block mb-2 text-sm font-medium text-gray-900">
                     Province
                 </label>
-                <input type="text" wire:model="selected_province_name" list="datalistProvinces" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
+                <input type="text" wire:input="clearCities" wire:change="updateCitiesList()" wire:model="selected_province_name" list="datalistProvinces" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
                 <datalist id="datalistProvinces">
                     <option value="">
                     @if($provinces)
@@ -67,7 +67,7 @@
                 <label for="selected_city_name"class="block mb-2 text-sm font-medium text-gray-900">
                     Municipality/City
                 </label>
-                <input type="text" wire:model="selected_city_name" list="datalistCities" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
+                <input type="text" wire:input="clearBarangay" wire:change="updateBarangayList()" wire:model="selected_city_name" list="datalistCities" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
                 <datalist id="datalistCities">
                     <option value="">
                     @if($cities)

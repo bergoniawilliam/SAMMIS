@@ -20,6 +20,8 @@ class UserSeeder extends Seeder
       $first_user->middle_name = 'Dorado';
       $first_user->last_name = 'Bergonia';
       $first_user->qualifier = 'Jr';
+      $first_user->station_id = 78;
+      $first_user->unit_office_id = 3;
       $first_user->isActive = '1';
       $first_user->save();
 

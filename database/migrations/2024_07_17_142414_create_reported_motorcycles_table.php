@@ -11,29 +11,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('motor', function (Blueprint $table) {
+        Schema::create('reported_motorcycles', function (Blueprint $table) {
             $table->id();
             $table->string('blotterno');
+            $table->string('plate_number');
+            $table->string('chassis_number');
+            $table->string('engine_number');
+            $table->string('mvfile_number');
             $table->string('region');
             $table->string('province');
             $table->string('municipality');
             $table->string('barangay');
             $table->string('street');
             $table->datetime('date_time_missing');
-            $table->string('owner');
+            $table->foreignId('motorcycle_reporters_id')->constrained();
+            $table->foreignId('reported_motorcycle_owners_id')->constrained();
             $table->string('type');
             $table->string('make');
             $table->string('model');
             $table->string('color');
-            $table->string('mvfile_number');
-            $table->string('plate_number');
-            $table->string('chassis_number');
-            $table->string('engine_number');
-            $table->text('status');
-            $table->string('remarks');
-            $table->string('station');
-            $table->integer('created_by_id');
-            $table->integer('updated_by_id');
+            $table->foreignId('station_id')->constrained();
+            $table->foreignId('created_by_id')->constrained('users');
+            $table->foreignId('updated_by_id')->constrained('users');
             $table->timestamps();
         });
     }
@@ -43,6 +42,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('motor');
+        Schema::dropIfExists('reported_motorcycles');
     }
 };
