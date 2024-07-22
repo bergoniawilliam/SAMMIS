@@ -10,8 +10,7 @@ class Page extends Component
     public $currentForm = 1;
     public $disablePreviousButton=true;
     public $disableNextButton=false;
-    #[Validate('required|min:3')] 
-    public $blotter_number = '';
+    public $nextButtonLabel="Next";
 
     public function render()
     {
@@ -21,7 +20,19 @@ class Page extends Component
 
     public function nextForm()
     {
-        $this->dispatch('store-motorcycle');
+        switch ($this->currentForm) {
+            case (1):
+                $this->dispatch('validate-motorcycle');
+                break;
+            case (2):
+                $this->dispatch('validate-reporter');
+                break;
+            case (3):
+                $this->dispatch('validate-owner');
+                break;
+        }
+            
+       
     }
 
     public function previousForm()
@@ -34,8 +45,16 @@ class Page extends Component
     #[On('validation-success')] 
     public function handleValidationSuccess()
     {
+        
         $this->currentForm++;
         $this->disablePreviousButton = false;
-        $this->disableNextButton = $this->currentForm === 3 ? true : false;
+        if($this->currentForm === 3)
+        {
+            $this->nextButtonLabel = "Submit";
+            //dito mo na ididispatch yung mga store
+            $this->dispatch('store-motorcyle');
+            $this->dispatch('store-reporter');
+            $this->dispatch('store-owner');
+        }
     }
 }

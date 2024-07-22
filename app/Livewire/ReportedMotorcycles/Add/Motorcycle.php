@@ -78,8 +78,8 @@ class Motorcycle extends Component
         
     }
 
-    #[On('store-motorcycle')] 
-    public function store()
+    #[On('validate-motorcycle')] 
+    public function validateMotor()
     {
         $this->validate();
         $this->dispatch('validation-success'); //dispatch nya yung validation-success. Check Page.php line 34 

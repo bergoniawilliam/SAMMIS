@@ -65,12 +65,13 @@ class Reporter extends Component
              
         }
     }
-     #[On('store-motorcycle')] 
-    public function store()
+     #[On('validate-reporter')] 
+    public function validateReporter()
     {
         $this->validate();
-        // dd('validate lang muna ng motorcycle form');
+        $this->dispatch('validation-success');
     }
+    
     public function updateCitiesList()
     {
           if($this->selected_province_name !== "")
