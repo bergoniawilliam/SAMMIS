@@ -81,24 +81,10 @@ class Motorcycle extends Component
     #[On('store-motorcycle')] 
     public function store()
     {
-
         $this->validate();
-    //     $this->validate();
-    //    // Set up validator
-    //     $validator = Validator::make($request->all(), [
-    //         'blotter_number' => 'required|min:3',
-    //     ]);
-
-    //     // Check validation result
-    //     if ($validator->fails()) {
-    //         // Redirect back with validation errors
-    //      dd("fails");
-    //     } else {
-    //         // Proceed with success logic
-    //         // For example, save data or return a success view
-    //         dd("s");
-    //     }
+        $this->dispatch('validation-success'); //dispatch nya yung validation-success. Check Page.php line 34 
     }
+
     public function updateCitiesList()
     {
           if($this->selected_province_name !== "")
