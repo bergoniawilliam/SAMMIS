@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('reported_motorcycles', function (Blueprint $table) {
             $table->id();
-            $table->string('blotterno');
+            $table->string('blotter_number');
             $table->string('plate_number');
             $table->string('chassis_number');
             $table->string('engine_number');
@@ -23,13 +23,14 @@ return new class extends Migration
             $table->string('municipality');
             $table->string('barangay');
             $table->string('street');
-            $table->datetime('date_time_missing');
-            $table->foreignId('motorcycle_reporters_id')->constrained();
-            $table->foreignId('reported_motorcycle_owners_id')->constrained();
+            $table->datetime('date_time_missing'); 
+            $table->foreignId('motorcycle_reporters_id')->constrained('motorcycle_reporters');
+            $table->foreignId('reported_motorcycle_owners_id')->constrained('reported_motorcycle_owners');
             $table->string('type');
             $table->string('make');
             $table->string('model');
             $table->string('color');
+            $table->string('ioc');
             $table->foreignId('station_id')->constrained();
             $table->foreignId('created_by_id')->constrained('users');
             $table->foreignId('updated_by_id')->constrained('users');

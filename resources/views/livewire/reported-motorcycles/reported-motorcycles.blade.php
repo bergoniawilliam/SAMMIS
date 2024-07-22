@@ -27,44 +27,53 @@
         </div>
         @endif
          
-         <input wire:model.live.debounce.300ms="search" type="text" placeholder="Search" class=" px-3 py-2 rounded-lg border focus:outline-none focus:ring-primary-500 focus:border-primary-500 mb-4" />
+         <input input wire:model.live.debounce.150ms="search" type="text" placeholder="Search" class=" px-3 py-2 rounded-lg border focus:outline-none focus:ring-primary-500 focus:border-primary-500 mb-4" />
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
-                <tr>
+                <tr> 
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Id</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Blotter No</th>
+                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Plate Number</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">MV File No</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Chassis No</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Engine No</th>
-                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Status</th>
-                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Remarks</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Created At</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Actions</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                @foreach ($motorcycles as $motorcycle)
+                @foreach ($reported_motorcycles as $reported_motorcycle)
                     <tr>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->id }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->blotterno }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->mvfile_number }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->plate_number }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->chassis_number }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->engine_number }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->status }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->remarks }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $motorcycle->created_at->format('Y-m-d H:i:s') }}
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->id }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->blotter_number }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->plate_number }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->mvfile_number }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->chassis_number }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->engine_number }}</td>
+    
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->created_at->format('Y-m-d H:i:s') }}
                         </td>
                         <td class="px-6 py-3 whitespace-nowrap">
                             <div class="flex justify-between space-x-2">
-                                <a href="/users/edit/{{$user->id}}"class="block text-white bg-blue-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" >Edit</a>
-                                <a href="/users/delete/{{$user->id}}"class="block text-white bg-red-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete</a>
+                                <a href="/reported-motorcycles/edit/{$id}" class="block text-white bg-blue-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" >Update</a>
+                                <a class="block text-white bg-red-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete</a>
                             </div>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+         <div>
+            {{ $reported_motorcycles->links() }}
+            <select name="" id="" wire:model.live="perPage">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="1000">1000</option>
+            </select>
+        </div>
     </div>
 
 </div>

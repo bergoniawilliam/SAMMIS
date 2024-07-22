@@ -11,7 +11,7 @@ class ReportedMotorcycle extends Model
     protected $table = 'reported_motorcycles';
     
      protected $fillable = [
-        'blotterno',
+        'blotter_number',
         'plate_number',
         'mvfile_number',
         'chassis_number',
@@ -28,8 +28,7 @@ class ReportedMotorcycle extends Model
         'make',
         'model',
         'color',
-        'status',
-        'remarks',
+        'ioc',
         'station_id',
         'created_by_id',
         'updated_by_id',  

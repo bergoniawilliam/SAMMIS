@@ -33,9 +33,7 @@ class UsersDelete extends Component
         $this->users = User::all();
         return view('livewire.users.users-delete')
             ->extends('layouts.app')
-            ->section('content');
-          
-            
+            ->section('content');       
     }
      public function mount($id){
          $this->user = User::find($id);
