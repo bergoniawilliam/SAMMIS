@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('reported_motorcycles', function (Blueprint $table) {
             $table->id();
-            $table->string('blotter_number');
-            $table->string('plate_number');
-            $table->string('chassis_number');
-            $table->string('engine_number');
-            $table->string('mvfile_number');
+            $table->string('blotter_number')->unique();
+            $table->string('plate_number')->unique();
+            $table->string('chassis_number')->unique();
+            $table->string('engine_number')->unique();
+            $table->string('mvfile_number')->unique();
             $table->string('region');
             $table->string('province');
             $table->string('municipality');

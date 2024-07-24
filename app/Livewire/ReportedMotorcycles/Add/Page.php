@@ -11,6 +11,7 @@ class Page extends Component
     public $disablePreviousButton=true;
     public $disableNextButton=false;
     public $nextButtonLabel="Next";
+    public $ownerId;
 
     public function render()
     {
@@ -41,7 +42,7 @@ class Page extends Component
         $this->disableNextButton = false;
         $this->disablePreviousButton = $this->currentForm === 1 ? true : false; 
     }
-
+ 
     #[On('validation-success')] 
     public function handleValidationSuccess()
     {
@@ -52,9 +53,18 @@ class Page extends Component
         {
             $this->nextButtonLabel = "Submit";
             //dito mo na ididispatch yung mga store
-            $this->dispatch('store-motorcyle');
-            $this->dispatch('store-reporter');
+            // $this->dispatch('store-owner');
+            // $this->dispatch('store-motorcyle');
+            // $this->dispatch('store-reporter');
+            
+            // $this->currentForm === 3;
+        }
+        if($this->currentForm === 4)
+        {
+           
             $this->dispatch('store-owner');
+            
+           
         }
     }
 }

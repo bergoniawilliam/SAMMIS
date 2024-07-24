@@ -1,8 +1,4 @@
 <div>
-    Motor: <input type="text" wire:model="motor_model" />
-    @error('motor_model')
-        <span class="text-red-500 text-sm">{{ $message }}</span>
-    @enderror
     <div class="space-y-4">
         <div class="flex justify-between item-center">
             <h1 class="text-2xl font-bold">Motorcycle Info</h1>
@@ -99,6 +95,9 @@
                     <input type="text" wire:input="clearProvince" wire:change="updateProvincesList()"
                         wire:model.live="selected_region_name" list="datalistRegions"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
+                    @error('selected_region_name')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
                     <datalist id="datalistRegions">
                         <option value="">
                             @if ($regions)
@@ -107,6 +106,7 @@
                             @endforeach
                             @endif
                     </datalist>
+                    
                 </div>
                 <!-- Provinces -->
                 <div class="w-1/2">
@@ -116,6 +116,9 @@
                     <input type="text" wire:input="clearCities" wire:change="updateCitiesList()"
                         wire:model="selected_province_name" list="datalistProvinces"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
+                    @error('selected_province_name')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
                     <datalist id="datalistProvinces">
                         <option value="">
                             @if ($provinces)
@@ -124,6 +127,7 @@
                             @endforeach
                             @endif
                     </datalist>
+                    
                 </div>
                 <!-- Cities -->
                 <div class="w-1/2">
@@ -133,6 +137,9 @@
                     <input type="text" wire:input="clearBarangay" wire:change="updateBarangayList()"
                         wire:model="selected_city_name" list="datalistCities"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
+                        @error('selected_city_name')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
                     <datalist id="datalistCities">
                         <option value="">
                             @if ($cities)
@@ -149,6 +156,9 @@
                     </label>
                     <input type="text" wire:model="selected_barangay_name" list="datalistBarangays"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
+                        @error('selected_barangay_name')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
                     <datalist id="datalistBarangays">
                         <option value="">
                             @if ($barangays)
@@ -157,6 +167,7 @@
                             @endforeach
                             @endif
                     </datalist>
+                  
                 </div>
 
                 <!-- sdsdfs -->
@@ -213,6 +224,29 @@
                     @enderror
                 </div>
             </div>
+            <div class="flex justify-between space-x-4">
+                <div class="w-1/2">
+                    <label for="date"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date and Time</label> 
+                    <input type="datetime-local" wire:model.live="date_time_missing" id="date_time_missing" name="date_time_missing"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5">
+                    @error('date_time_missing')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="w-1/2">
+                    <label for="ioc"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Investigator On Case</label>
+                    <input type="text" wire:model.lazy="ioc" id="ioc" name="ioc"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                        placeholder="Type Investigator On Case">
+                    @error('ioc')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>    
+            
         </div>
     </div>
 </div>

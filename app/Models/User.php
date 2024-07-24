@@ -29,7 +29,7 @@ class User extends Authenticatable
         'station_id',
         'isActive',
         'unit_office_id',
-         'role',
+        'role',
     ];
 
     /**

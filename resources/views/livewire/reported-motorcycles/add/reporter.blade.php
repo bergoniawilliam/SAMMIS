@@ -1,8 +1,8 @@
 <div>
-    Reporter: <input type="text" wire:model="reporter_name" />
+    <!-- Reporter: <input type="text" wire:model="reporter_name" /> -->
     <div class="space-y-4">
         <div class="flex justify-between item-center">
-            <h1 class="text-2xl font-bold">Reportee Info</h1>
+            <h1 class="text-2xl font-bold">Reporter Info</h1>
             <a href="{{ route('reported-motorcycles') }}"
                 class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                 Motorcycle List
@@ -35,121 +35,133 @@
             @endif
             <div class="flex justify-between space-x-4">
                 <div class="w-1/2">
-                    <label for="first_name"
+                    <label for="first_name_reporter"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
-                    <input type="text" wire:model.lazy="first_name" id="first_name" name="first_name"
+                    <input type="text" wire:model.lazy="first_name_reporter" id="first_name_reporter" name="first_name_reporter"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                         placeholder="Type First Name">
-                    @error('first_name')
+                    @error('first_name_reporter')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="w-1/2">
-                    <label for="middle_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Middle Name</label>
-                    <input type="text" wire:model.lazy="middle_name" id="middle_name" name="middle_name"
+                    <label for="middle_name_reporter" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Middle Name</label>
+                    <input type="text" wire:model.lazy="middle_name_reporter" id="middle_name_reporter" name="middle_name_reporter"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                         placeholder="Type Middle Name">
-                    @error('middle_name')
+                    @error('middle_name_reporter')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="w-1/2">
-                    <label for="last_name"
+                    <label for="last_name_reporter"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
-                    <input type="text" wire:model.lazy="last_name" id="last_name" name="last_name"
+                    <input type="text" wire:model.lazy="last_name_reporter" id="last_name_reporter" name="last_name_reporter"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                         placeholder="Type Last Name">
-                    @error('last_name')
+                    @error('last_name_reporter')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="w-1/2">
-                    <label for="qualifier"
+                    <label for="qualifier_reporter"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qualifier</label>
-                    <input type="text" wire:model.lazy="qualifier" id="qualifier" name="qualifier"
+                    <input type="text" wire:model.lazy="qualifier_reporter" id="qualifier_reporter" name="qualifier_reporter"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                         placeholder="Type Qualifier">
-                    @error('qualifier')
+                    @error('qualifier_reporter')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="w-1/2">
-                    <label for="cellphone_number"
+                    <label for="cellphone_number_reporter"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cellphone Number</label>
-                    <input type="text" wire:model.lazy="cellphone_number" id="cellphone_number" name="cellphone_number"
+                    <input type="text" wire:model.lazy="cellphone_number_reporter" id="cellphone_number_reporter" name="cellphone_number_reporter"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                         placeholder="Type Cellphone Number">
-                    @error('cellphone_number')
+                    @error('cellphone_number_reporter')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
 
             </div>
             <div class="block sm:block md:block lg:flex xl:flex justify-center space-x-0 sm:space-x-0 md:space-x-0 lg:space-x-4 xl:space-x-4 items-center"
-                wire:init="loadInitAddresses">
+                wire:init="loadInitAddresses_reporter">
                 <!-- Regions -->
                 <div class="w-1/2">
-                    <label for="selected_region_name"class="block mb-2 text-sm font-medium text-gray-900">
+                    <label for="selected_region_name_reporter"class="block mb-2 text-sm font-medium text-gray-900">
                         Region
                     </label>
-                    <input type="text" wire:input="clearProvince" wire:change="updateProvincesList()"
-                        wire:model.live="selected_region_name" list="datalistRegions"
+                    <input type="text" wire:input="clearProvince_reporter" wire:change="updateProvincesList_reporter()"
+                        wire:model.live="selected_region_name_reporter" list="datalistRegions_reporter"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
-                    <datalist id="datalistRegions">
+                        @error('selected_region_name_reporter')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    <datalist id="datalistRegions_reporter">
                         <option value="">
-                            @if ($regions)
-                                @foreach ($regions as $region)
-                        <option value="{{ $region->name }}">
+                            @if ($regions_reporter)
+                                @foreach ($regions_reporter as $region_reporter)
+                        <option value="{{ $region_reporter->name }}">
                             @endforeach
                             @endif
                     </datalist>
                 </div>
                 <!-- Provinces -->
                 <div class="w-1/2">
-                    <label for="selected_province_name"class="block mb-2 text-sm font-medium text-gray-900">
+                    <label for="selected_province_name_reporter"class="block mb-2 text-sm font-medium text-gray-900">
                         Province
                     </label>
-                    <input type="text" wire:input="clearCities" wire:change="updateCitiesList()"
-                        wire:model="selected_province_name" list="datalistProvinces"
+                    <input type="text" wire:input="clearCities_reporter" wire:change="updateCitiesList_reporter()"
+                        wire:model="selected_province_name_reporter" list="datalistProvinces_reporter"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
-                    <datalist id="datalistProvinces">
+                        @error('selected_province_name_reporter')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    <datalist id="datalistProvinces_reporter">
                         <option value="">
-                            @if ($provinces)
-                                @foreach ($provinces as $province)
-                        <option value="{{ $province->name }}">
+                            @if ($provinces_reporter)
+                                @foreach ($provinces_reporter as $province_reporter)
+                        <option value="{{ $province_reporter->name }}">
                             @endforeach
                             @endif
                     </datalist>
                 </div>
                 <!-- Cities -->
                 <div class="w-1/2">
-                    <label for="selected_city_name"class="block mb-2 text-sm font-medium text-gray-900">
+                    <label for="selected_city_name_reporter"class="block mb-2 text-sm font-medium text-gray-900">
                         Municipality/City
                     </label>
-                    <input type="text" wire:input="clearBarangay" wire:change="updateBarangayList()"
-                        wire:model="selected_city_name" list="datalistCities"
+                    <input type="text" wire:input="clearBarangay_reporter" wire:change="updateBarangayList_reporter()"
+                        wire:model="selected_city_name_reporter" list="datalistCities_reporter"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
-                    <datalist id="datalistCities">
+                        @error('selected_city_name_reporter')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    <datalist id="datalistCities_reporter">
                         <option value="">
-                            @if ($cities)
-                                @foreach ($cities as $city)
-                        <option value="{{ $city->name }}">
+                            @if ($cities_reporter)
+                                @foreach ($cities_reporter as $city_reporter)
+                        <option value="{{ $city_reporter->name }}">
                             @endforeach
                             @endif
                     </datalist>
                 </div>
                 <!-- Cities -->
                 <div class="w-1/2">
-                    <label for="selected_barangay_name"class="block mb-2 text-sm font-medium text-gray-900">
+                    <label for="selected_barangay_name_reporter"class="block mb-2 text-sm font-medium text-gray-900">
                         Barangay
                     </label>
-                    <input type="text" wire:model="selected_barangay_name" list="datalistBarangays"
+                    <input type="text" wire:model="selected_barangay_name_reporter" list="datalistBarangays_reporter"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
-                    <datalist id="datalistBarangays">
+                        @error('selected_barangay_name_reporter')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    <datalist id="datalistBarangays_reporter">
                         <option value="">
-                            @if ($barangays)
-                                @foreach ($barangays as $barangay)
-                        <option value="{{ $barangay->name }}">
+                            @if ($barangays_reporter)
+                                @foreach ($barangays_reporter as $barangay_reporter)
+                        <option value="{{ $barangay_reporter->name }}">
                             @endforeach
                             @endif
                     </datalist>
@@ -160,22 +172,22 @@
             </div>
             <div class="flex justify-between space-x-4">
                  <div class="w-1/2">
-                    <label for="street"
+                    <label for="street_reporter"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Street</label>
-                    <input type="text" wire:model.lazy="street" id="street" name="street"
+                    <input type="text" wire:model.lazy="street_reporter" id="street_reporter" name="street_reporter"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                         placeholder="Type Street">
-                    @error('street')
+                    @error('street_reporter')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="w-1/2">
-                    <label for="home_unit_number"
+                    <label for="home_unit_number_reporter"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Home/Unit Number</label>
-                    <input type="text" wire:model.lazy="home_unit_number" id="home_unit_number" name="home_unit_number"
+                    <input type="text" wire:model.lazy="home_unit_number_reporter" id="home_unit_number_reporter" name="home_unit_number_reporter"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                         placeholder="Type Home/Unit Number">
-                    @error('make')
+                    @error('home_unit_number_reporter')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
