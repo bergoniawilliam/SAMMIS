@@ -7,7 +7,7 @@ use App\Models\ReportedMotorcycle;
 use App\Models\RefRank;
 use App\Models\UnitOffice; 
 use App\Models\Station;
-
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use App\Models\Region;
@@ -16,6 +16,7 @@ use App\Models\City;
 use App\Models\Barangay;
 use Livewire\Attributes\On;
 use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class Motorcycle extends Component
@@ -44,6 +45,7 @@ class Motorcycle extends Component
     public $ioc;
     public $ownerId;
     public $reporterId;
+    public $reportmotorcycleId;
    
     public function render()
     {
@@ -171,10 +173,8 @@ class Motorcycle extends Component
     }
     #[On('store-motorcycle')] 
     public function storeMotorcyle($ownerId , $reporterId)
-
     {
-        
-         ReportedMotorcycle::create([
+            $reportmotorcycle = ReportedMotorcycle::create([
             'blotter_number' => $this->blotter_number,
             'plate_number' => $this->plate_number,
             'chassis_number' => $this->chassis_number,
@@ -194,10 +194,31 @@ class Motorcycle extends Component
             'model' => $this->model,
             'color' => $this->color,
             'ioc' => $this->ioc,
-            'station_id' => $ownerId,
-            'created_by_id' => $ownerId,
-            'updated_by_id' => $ownerId,
+            'station_id' => Auth::user()->station_id,
+            'created_by_id' => Auth::user()->id,
+            'updated_by_id' => Auth::user()->id,
         ]);
+
+            $reportmotorcycleId = $reportmotorcycle->id;
+            ReportedMotorcycle::create([
+            'blotter_number' => $this->blotter_number,
+            'plate_number' => $this->plate_number,
+            'chassis_number' => $this->chassis_number,
+            'engine_number' => $this->engine_number,
+           
+            'motorcycle_reporters_id' => $reporterId,
+            'reported_motorcycle_owners_id' => $ownerId,
+            'type' => $this->type,
+            'make' => $this->make,
+            'model' => $this->model,
+            'color' => $this->color,
+            'ioc' => $this->ioc,
+            'station_id' => Auth::user()->station_id,
+            'created_by_id' => Auth::user()->id,
+            'updated_by_id' => Auth::user()->id,
+        ]);
+
+
        
     }
 } 

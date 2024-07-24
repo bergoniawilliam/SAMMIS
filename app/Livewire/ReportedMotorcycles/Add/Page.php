@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Livewire\ReportedMotorcycles\Add;
-
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Attributes\On; 
 use Livewire\Attributes\Validate;
@@ -21,6 +21,7 @@ class Page extends Component
 
     public function nextForm()
     {
+     
         switch ($this->currentForm) {
             case (1):
                 $this->dispatch('validate-motorcycle');
@@ -52,12 +53,7 @@ class Page extends Component
         if($this->currentForm === 3)
         {
             $this->nextButtonLabel = "Submit";
-            //dito mo na ididispatch yung mga store
-            // $this->dispatch('store-owner');
-            // $this->dispatch('store-motorcyle');
-            // $this->dispatch('store-reporter');
-            
-            // $this->currentForm === 3;
+          
         }
         if($this->currentForm === 4)
         {
