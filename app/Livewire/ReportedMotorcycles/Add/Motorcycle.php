@@ -43,7 +43,7 @@ class Motorcycle extends Component
     public $model="asdasdasd";
     public $color="asdasdasd";
     public $ioc="asdasdasd";
-    public $ownerId="1";
+    public $ownerId;
     public $reporterId;
     public $reportmotorcycleId;
    

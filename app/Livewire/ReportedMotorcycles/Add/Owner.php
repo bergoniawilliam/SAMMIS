@@ -36,7 +36,7 @@ class Owner extends Component
     public $cellphone_number_owner="12312312";
     public $street_owner="asdasdasd";
     public $home_unit_number_owner="asdasdasd";
-    public $ownerId="1";
+    public $ownerId;
     public function render()
     {
         $this->motorcycles = MotorcycleReporter::all();

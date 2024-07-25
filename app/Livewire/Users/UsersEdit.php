@@ -110,63 +110,37 @@ class UsersEdit extends Component
     public function update()
     {
         $this->validate();
-       
-        // $this->user->update([
-        //     'email' => $this->email,
-        //     'first_name' => $this->first_name,
-        //     'middle_name' => $this->middle_name,
-        //     'last_name' => $this->last_name,
-        //     'qualifier' => $this->qualifier,
-        //     'rank_id' => $this->selected_rank_id,
-        //     'station_id' => $this->getStationId($this->selected_station_name),
-        //     'unit_office_id' => $this->selected_unit_office_id ? $this->selected_unit_office_id : null,
-        //     'isActive' => $this->isActive,
-        // ]);
-        $originalUser = User::find($this->user->id);
-        if (!$originalUser) {
-            session()->flash('error', 'User not found!');
-        return;
+        $user = User::find($this->user->id);
+        $user->email = $this->email;
+        $user->first_name = $this->first_name;
+        $user->middle_name = $this->middle_name;
+        $user->middle_name = $this->middle_name;
+        $user->last_name = $this->last_name;
+        $user->qualifier = $this->qualifier;
+        $user->rank_id = $this->selected_rank_id;
+        $user->station_id = $this->getStationId($this->selected_station_name);
+        $user->unit_office_id = $this->selected_unit_office_id ? $this->selected_unit_office_id : null;
+        $user->isActive = $this->isActive;
+        $user->save();
+
+        $newValues = $user->getDirty();
+        $changes = [];
+        foreach ($newValues as $attribute => $newValue)
+        {
+            $oldValue = $user->getOriginal($attribute);
+            $changes [] = "{ $attribute : $oldValue to $newValue }";
         }
-        // Define new values based on the form input
-        $newValues = [
-            'email' => $this->email,
-            'first_name' => $this->first_name,
-            'middle_name' => $this->middle_name,
-            'last_name' => $this->last_name,
-            'qualifier' => $this->qualifier,
-            'rank_id' => $this->selected_rank_id,
-            'station_id' => $this->getStationId($this->selected_station_name),
-            'unit_office_id' => $this->selected_unit_office_id ? $this->selected_unit_office_id : null,
-            'isActive' => $this->isActive,
-        ];
-        
-             // Capture changes
-    $updatedFields = [];
-    foreach ($newValues as $field => $newValue) {
-        if ($originalUser->$field !== $newValue) {
-            // Format field name to be more readable
-            $formattedFieldName = ucfirst(str_replace('_', ' ', $field));
-            // Ensure old and new values are converted to strings and trimmed
-            $oldValue = trim((string) $originalUser->$field);
-            $newValue = trim((string) $newValue);
-            // Add to updated fields with both old and new values as a plain text string
-            $updatedFields[] = "{$formattedFieldName}: {$oldValue} to {$newValue}";
-            
-        }
-    }
 
-    // Update the user record
-    $this->user->update($newValues);
+        // dd($changes);
 
-    // Log changes if there are any
-    if (!empty($updatedFields)) {
-        AuditTrailUser::create([
-            'user_id' => $this->user->id,
-            'action' => 'update',
-            'updated_fields' => implode(', ', $updatedFields),
-        ]);
-    }
-
+        // if (!empty($user->getDirty())) {
+        //     AuditTrailUser::create([
+        //         'user_id' => $this->user->id,
+        //         'action' => 'update',
+        //         'updated_fields' => $changes,
+        //     ]);
+        //     $user->save();
+        // }
 
 
         session()->flash('message', 'User has been updated successfully!');

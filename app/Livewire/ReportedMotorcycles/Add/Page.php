@@ -64,4 +64,8 @@ class Page extends Component
             $this->currentForm--;
         }
     }
+    public function clearSuccessMessage()
+    {
+         session()->forget('message');  
+    }
 }

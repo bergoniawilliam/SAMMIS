@@ -42,4 +42,8 @@ class ReportedMotorcycles extends Component
         ])->extends('layouts.app')
         ->section('content');
     }
+    public function clearSuccessMessage()
+    {
+         session()->forget('message');  
+    }
 }

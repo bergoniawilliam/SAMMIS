@@ -44,7 +44,7 @@ class Status extends Component
             'updated_by_id' => Auth::user()->id,
         ]);
         session()->flash('message', 'Reported Motorcycle has been created successfully!');
-        return redirect('add.page');
+        return redirect('reported-motorcycles');
     }
 
 }

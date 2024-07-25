@@ -34,7 +34,7 @@ class Reporter extends Component
     public $cellphone_number_reporter="12312312";
     public $street_reporter="12312312";
     public $home_unit_number_reporter="12312312";
-    public $ownerId="1";
+    public $ownerId;
     
 
     public function render()
