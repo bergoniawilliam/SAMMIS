@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Livewire\ReportedMotorcycles\Add;
-
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Attributes\On; 
 use Livewire\Attributes\Validate;
@@ -11,6 +11,7 @@ class Page extends Component
     public $disablePreviousButton=true;
     public $disableNextButton=false;
     public $nextButtonLabel="Next";
+    public $ownerId;
 
     public function render()
     {
@@ -30,9 +31,10 @@ class Page extends Component
             case (3):
                 $this->dispatch('validate-owner');
                 break;
+             case (4):
+                $this->dispatch('validate-status');
+                break;
         }
-            
-       
     }
 
     public function previousForm()
@@ -41,20 +43,26 @@ class Page extends Component
         $this->disableNextButton = false;
         $this->disablePreviousButton = $this->currentForm === 1 ? true : false; 
     }
-
+ 
     #[On('validation-success')] 
     public function handleValidationSuccess()
     {
         
         $this->currentForm++;
         $this->disablePreviousButton = false;
-        if($this->currentForm === 3)
+        if($this->currentForm === 4)
         {
             $this->nextButtonLabel = "Submit";
-            //dito mo na ididispatch yung mga store
-            $this->dispatch('store-motorcyle');
-            $this->dispatch('store-reporter');
-            $this->dispatch('store-owner');
         }
+        if($this->currentForm === 5)
+        { 
+          
+            $this->dispatch('store-owner');
+            $this->currentForm--;
+        }
+    }
+    public function clearSuccessMessage()
+    {
+         session()->forget('message');  
     }
 }
