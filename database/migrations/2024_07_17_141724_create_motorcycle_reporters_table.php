@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('barangay');
             $table->string('street');
             $table->string('home_unit_number')->nullable();
+            $table->foreignId('created_by_id')->constrained('users');
+            $table->foreignId('updated_by_id')->constrained('users');
             $table->timestamps();
         });
     }

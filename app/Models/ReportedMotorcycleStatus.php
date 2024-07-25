@@ -13,5 +13,7 @@ class ReportedMotorcycleStatus extends Model
         'reported_motorcycles_id',
         'status',
         'remarks',
+        'created_by_id',
+        'updated_by_id', 
     ];
 }

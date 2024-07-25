@@ -5,6 +5,7 @@ use App\Models\UnitOffice;
 use App\Models\RefRank;
 use App\Models\Station;
 use App\Models\User;
+use App\Models\AuditTrailUser;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
  
@@ -71,7 +72,19 @@ class UsersAdd extends Component
     public function store()
     {
         $this->validate();
-        User::create([
+        // User::create([
+        //     'email' => $this->email,
+        //     'password' => Hash::make('qwerty54321'),
+        //     'rank_id' => $this->selected_rank_id,
+        //     'first_name' => $this->first_name,
+        //     'middle_name' => $this->middle_name,
+        //     'last_name' => $this->last_name,
+        //     'qualifier' => $this->qualifier,
+        //     'station_id' => $this->getStationId($this->selected_station_name),
+        //     'unit_office_id' => $this->selected_unit_office_id ? $this->selected_unit_office_id : null,
+        //     'isActive' => $this->isActive,
+        // ]);
+        $userData = [
             'email' => $this->email,
             'password' => Hash::make('qwerty54321'),
             'rank_id' => $this->selected_rank_id,
@@ -82,8 +95,32 @@ class UsersAdd extends Component
             'station_id' => $this->getStationId($this->selected_station_name),
             'unit_office_id' => $this->selected_unit_office_id ? $this->selected_unit_office_id : null,
             'isActive' => $this->isActive,
-        ]);
-   
+        ];
+
+         $user = User::create($userData);
+
+         $userData['password'] = '******';
+
+    // Sanitize values (remove special characters)
+    $sanitizedFields = [];
+    foreach ($userData as $field => $value) {
+        $sanitizedValue = preg_replace('/[^a-zA-Z0-9\s]/', '', $value); // Remove special characters
+        $sanitizedFields[$field] = trim($sanitizedValue); // Trim whitespace
+    }
+
+    // Convert to a readable string format
+    $formattedFields = [];
+    foreach ($sanitizedFields as $field => $value) {
+        $formattedFields[] = ucfirst(str_replace('_', ' ', $field)) . ': ' . $value;
+    }
+
+    // Log the creation
+    AuditTrailUser::create([
+        'user_id' => $user->id,
+        'action' => 'create',
+        'updated_fields' => implode(', ', $formattedFields), // Combine all fields into a single string
+    ]);
+
        
         session()->flash('message', 'User has been created successfully!');
         

@@ -32,6 +32,9 @@ class Page extends Component
             case (3):
                 $this->dispatch('validate-owner');
                 break;
+             case (4):
+                $this->dispatch('validate-status');
+                break;
         }
             
        
@@ -50,17 +53,15 @@ class Page extends Component
         
         $this->currentForm++;
         $this->disablePreviousButton = false;
-        if($this->currentForm === 3)
-        {
-            $this->nextButtonLabel = "Submit";
-          
-        }
         if($this->currentForm === 4)
         {
-           
+            $this->nextButtonLabel = "Submit";
+        }
+        if($this->currentForm === 5)
+        { 
+          
             $this->dispatch('store-owner');
-            
-           
+            $this->currentForm--;
         }
     }
 }

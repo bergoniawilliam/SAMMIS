@@ -22,28 +22,28 @@ use Illuminate\Support\Facades\Validator;
 class Motorcycle extends Component
 {
     public $motor_model;
-    public $selected_region_name="";
-    public $selected_province_name="";
-    public $selected_city_name="";
-    public $selected_barangay_name="";
+    public $selected_region_name="asdasdasd";
+    public $selected_province_name="asdasdasd";
+    public $selected_city_name="asdasdasd";
+    public $selected_barangay_name="asdasdasd";
     public $regions;
     public $provinces;
     public $cities;
     public $barangays;
     public $request;
-    public $blotter_number;
-    public $plate_number;
-    public $chassis_number;
-    public $engine_number;
-    public $mvfile_number;
-    public $street;
+    public $blotter_number="asdasdasd";
+    public $plate_number="asdasdasd";
+    public $chassis_number="asdasdasd";
+    public $engine_number="asdasdasd";
+    public $mvfile_number="asdasdasd";
+    public $street="asdasdasd";
     public $date_time_missing;
-    public $type;
-    public $make;
-    public $model;
-    public $color;
-    public $ioc;
-    public $ownerId;
+    public $type="MC";
+    public $make="asdasdasd";
+    public $model="asdasdasd";
+    public $color="asdasdasd";
+    public $ioc="asdasdasd";
+    public $ownerId="1";
     public $reporterId;
     public $reportmotorcycleId;
    
@@ -198,27 +198,8 @@ class Motorcycle extends Component
             'created_by_id' => Auth::user()->id,
             'updated_by_id' => Auth::user()->id,
         ]);
-
             $reportmotorcycleId = $reportmotorcycle->id;
-            ReportedMotorcycle::create([
-            'blotter_number' => $this->blotter_number,
-            'plate_number' => $this->plate_number,
-            'chassis_number' => $this->chassis_number,
-            'engine_number' => $this->engine_number,
-           
-            'motorcycle_reporters_id' => $reporterId,
-            'reported_motorcycle_owners_id' => $ownerId,
-            'type' => $this->type,
-            'make' => $this->make,
-            'model' => $this->model,
-            'color' => $this->color,
-            'ioc' => $this->ioc,
-            'station_id' => Auth::user()->station_id,
-            'created_by_id' => Auth::user()->id,
-            'updated_by_id' => Auth::user()->id,
-        ]);
-
-
+            $this->dispatch('store-status', $reportmotorcycleId);
        
     }
 } 

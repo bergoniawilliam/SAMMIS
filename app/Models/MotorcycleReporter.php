@@ -21,5 +21,7 @@ class MotorcycleReporter extends Model
         'barangay',
         'street',
         'home_unit_number',
+        'created_by_id',
+        'updated_by_id', 
     ];
 }

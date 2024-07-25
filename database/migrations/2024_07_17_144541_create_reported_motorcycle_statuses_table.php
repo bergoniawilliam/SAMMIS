@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('reported_motorcycles_id')->constrained();
             $table->string('status');
             $table->text('remarks');
+            $table->foreignId('created_by_id')->constrained('users');
+            $table->foreignId('updated_by_id')->constrained('users');
             $table->timestamps();
         });
     }

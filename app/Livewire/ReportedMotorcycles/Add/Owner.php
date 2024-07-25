@@ -9,7 +9,7 @@ use App\Models\UnitOffice;
 use App\Models\Station;
 
 use Livewire\Component;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Region;
 use App\Models\Province;
 use App\Models\City;
@@ -21,22 +21,22 @@ class Owner extends Component
     public $owner_name;
     public $reporter_name;
     public $motor_model;
-    public $selected_region_name_owner="";
-    public $selected_province_name_owner="";
-    public $selected_city_name_owner="";
-    public $selected_barangay_name_owner="";
+    public $selected_region_name_owner="asdasdasd";
+    public $selected_province_name_owner="asdasdasd";
+    public $selected_city_name_owner="asdasdasd";
+    public $selected_barangay_name_owner="asdasdasd";
     public $regions_owner;
     public $provinces_owner;
     public $cities_owner;
     public $barangays_owner;
-    public $last_name_owner;
+    public $last_name_owner="asdasdasd";
     public $first_name_owner="asdasdasd";
-    public $middle_name_owner="";
-    public $qualifier_owner="";
-    public $cellphone_number_owner;
-    public $street_owner;
-    public $home_unit_number_owner;
-    public $ownerId;
+    public $middle_name_owner="asdasdasd";
+    public $qualifier_owner="asdasdasd";
+    public $cellphone_number_owner="12312312";
+    public $street_owner="asdasdasd";
+    public $home_unit_number_owner="asdasdasd";
+    public $ownerId="1";
     public function render()
     {
         $this->motorcycles = MotorcycleReporter::all();
@@ -155,6 +155,8 @@ class Owner extends Component
             'barangay' => $this->selected_barangay_name_owner,
             'street' => $this->street_owner,
             'home_unit_number' => $this->home_unit_number_owner,
+            'created_by_id' => Auth::user()->id,
+            'updated_by_id' => Auth::user()->id,
         ]);
             $ownerId = $owner->id;  
             // Dispatch the store-motorcycle event with the owner ID
@@ -162,5 +164,4 @@ class Owner extends Component
 
     }
 
-     
 }

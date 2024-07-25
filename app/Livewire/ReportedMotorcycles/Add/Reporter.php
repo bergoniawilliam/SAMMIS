@@ -6,7 +6,7 @@ use App\Models\MotorcycleReporter;
 use App\Models\RefRank;
 use App\Models\UnitOffice; 
 use App\Models\Station;
-
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 use App\Models\Region;
@@ -19,22 +19,22 @@ class Reporter extends Component
 { 
     public $reporter_name;
     public $motor_model;
-    public $selected_region_name_reporter="";
-    public $selected_province_name_reporter="";
-    public $selected_city_name_reporter="";
-    public $selected_barangay_name_reporter="";
+    public $selected_region_name_reporter="asdasdasd";
+    public $selected_province_name_reporter="asdasdasd";
+    public $selected_city_name_reporter="asdasdasd";
+    public $selected_barangay_name_reporter="asdasdasd";
     public $regions_reporter;
     public $provinces_reporter;
     public $cities_reporter;
     public $barangays_reporter;
-    public $first_name_reporter;
-    public $middle_name_reporter;
-    public $last_name_reporter;
-    public $qualifier_reporter;
-    public $cellphone_number_reporter;
-    public $street_reporter;
-    public $home_unit_number_reporter;
-    public $ownerId;
+    public $first_name_reporter="asdasdasd";
+    public $middle_name_reporter="asdasdasd";
+    public $last_name_reporter="asdasdasd";
+    public $qualifier_reporter="asdasdasd";
+    public $cellphone_number_reporter="12312312";
+    public $street_reporter="12312312";
+    public $home_unit_number_reporter="12312312";
+    public $ownerId="1";
     
 
     public function render()
@@ -156,6 +156,8 @@ class Reporter extends Component
             'barangay' => $this->selected_barangay_name_reporter,
             'street' => $this->street_reporter,
             'home_unit_number' => $this->home_unit_number_reporter,
+            'created_by_id' => Auth::user()->id,
+            'updated_by_id' => Auth::user()->id,
         ]);
             $reporterId = $reporter->id;
             

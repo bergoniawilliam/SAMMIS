@@ -26,6 +26,8 @@ class MotorcycleReporterSeeder extends Seeder
             'barangay' => 'Barangay 1',
             'street' => 'Street 1',
             'home_unit_number' => 'Street 1',
+            'created_by_id' => 1, // Assuming a foreign key
+            'updated_by_id' => 1, // Assuming a foreign key
            
          
         ]);
