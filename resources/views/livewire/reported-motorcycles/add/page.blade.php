@@ -1,5 +1,11 @@
 <div class="space-y-8">
-    <h1 class="text-3xl font-bold">Please Fill up all forms</h1>
+    <div class="flex justify-between items-center">
+        <h1 class="text-3xl font-bold">Please Fill up all forms</h1>
+        <a href="{{ route('reported-motorcycles') }}"
+            class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+            Motorcycle List
+        </a>
+    </div>
 
     @if (session()->has('message'))
         <div id="alert-3" class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50" role="alert">
@@ -24,6 +30,45 @@
             </button>
         </div>
     @endif
+
+    <ol class="items-center w-full space-y-4 hidden sm:hidden md:hidden lg:flex xl:flex sm:space-x-8 sm:space-y-0 rtl:space-x-reverse">
+        <li class="flex items-center {{ $currentForm >= 1 ? 'text-blue-500' : 'text-gray-500' }} space-x-2.5 rtl:space-x-reverse">
+            <span class="flex items-center justify-center w-8 h-8 border {{ $currentForm >= 1 ? 'border-blue-500' : 'border-gray-500' }} rounded-full shrink-0">
+                1
+            </span>
+            <span>
+                <h3 class="font-medium leading-tight">Motorcycle Info</h3>
+                <p class="text-sm">Fill up motorcycle info</p>
+            </span>
+        </li>
+        <li class="flex items-center {{ $currentForm >= 2 ? 'text-blue-500' : 'text-gray-500' }} space-x-2.5 rtl:space-x-reverse">
+            <span class="flex items-center justify-center w-8 h-8 border {{ $currentForm >= 2 ? 'border-blue-500' : 'border-gray-500' }} rounded-full shrink-0">
+                2
+            </span>
+            <span>
+                <h3 class="font-medium leading-tight">Reporter Info</h3>
+                <p class="text-sm">Fill up reporter info</p>
+            </span>
+        </li>
+        <li class="flex items-center {{ $currentForm >= 3 ? 'text-blue-500' : 'text-gray-500' }} space-x-2.5 rtl:space-x-reverse">
+            <span class="flex items-center justify-center w-8 h-8 border {{ $currentForm >= 3 ? 'border-blue-500' : 'border-gray-500' }} rounded-full shrink-0">
+                3
+            </span>
+            <span>
+                <h3 class="font-medium leading-tight">Owner Info</h3>
+                <p class="text-sm">Fill up owner info</p>
+            </span>
+        </li>
+        <li class="flex items-center {{ $currentForm >= 4 ? 'text-blue-500' : 'text-gray-500' }} space-x-2.5 rtl:space-x-reverse">
+            <span class="flex items-center justify-center w-8 h-8 border {{ $currentForm >= 4 ? 'border-blue-500' : 'border-gray-500' }} rounded-full shrink-0 dark:border-gray-400">
+                4
+            </span>
+            <span>
+                <h3 class="font-medium leading-tight">Remarks</h3>
+                <p class="text-sm">Explain the circumstances surrounding the issue</p>
+            </span>
+        </li>
+    </ol>
 
     <div class="space-y-8">
         <!-- Motorcycle Form -->

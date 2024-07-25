@@ -38,7 +38,7 @@ class Status extends Component
        
             ReportedMotorcycleStatus::create([
             'reported_motorcycles_id' => $reportmotorcycleId,
-            'status' => $this->status,
+            'status' => 'Missing/Stolen',
             'remarks' => $this->remarks,
             'created_by_id' => Auth::user()->id,
             'updated_by_id' => Auth::user()->id,

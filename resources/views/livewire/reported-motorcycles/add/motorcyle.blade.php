@@ -1,12 +1,6 @@
 <div class="space-y-8">
-    <div class="flex justify-between item-center">
-        <h1 class="text-2xl font-bold">Motorcycle Info</h1>
-        <a href="{{ route('reported-motorcycles') }}"
-            class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-            Motorcycle List
-        </a>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-0 sm:gap-0 nd:gap-0 lg:gap-4 xl:gap-4 space-y-4 sm:space-y-4 md:space-y-8 lg:space-y-0 xl:space-y-0">
+    <h1 class="text-2xl font-bold">Motorcycle Info</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-0 sm:gap-0 md:gap-0 lg:gap-4 xl:gap-4 space-y-4 sm:space-y-4 md:space-y-4 lg:space-y-0 xl:space-y-0">
         <div class="border rounded-lg p-4 col-span-2 shadow-md">
             <b>Motor Cycle Details</b>
             <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-0 sm:gap-0 nd:gap-0 lg:gap-4 xl:gap-4 space-y-4 sm:space-y-4 md:space-y-8 lg:space-y-0 xl:space-y-0">
