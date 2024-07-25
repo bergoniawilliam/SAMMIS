@@ -22,10 +22,10 @@ use Illuminate\Support\Facades\Validator;
 class Motorcycle extends Component
 {
     public $motor_model;
-    public $selected_region_name="asdasdasd";
-    public $selected_province_name="asdasdasd";
-    public $selected_city_name="asdasdasd";
-    public $selected_barangay_name="asdasdasd";
+    public $selected_region_name=null;
+    public $selected_province_name=null;
+    public $selected_city_name=null;
+    public $selected_barangay_name=null;
     public $regions;
     public $provinces;
     public $cities;
@@ -78,10 +78,8 @@ class Motorcycle extends Component
            
         ];
     }
-   
-    
 
-     public function loadInitAddresses()
+    public function loadInitAddresses()
     { 
         $this->regions = Region::all();
         // $this->provinces = Province::all();
@@ -89,26 +87,57 @@ class Motorcycle extends Component
         // $this->barangays = Barangay::all();
         // dd(Province::where('region_id', 03)->get()->pluck('name')[0]);  get specific field and get the position of the value from the list
     }
-      public function updateProvincesList()
+    public function updateProvincesList()
     {
         
         if($this->selected_region_name !== "")
         {
             $region = Region::where('name', $this->selected_region_name)->get();
             $region_id = count($region) ? $region->pluck('region_id') : null;
-            $this->provinces = $region_id ? Province::where('region_id', $region_id)->get() : null;
+            $this->provinces = $region_id ? Province::where('region_id', $region_id)->orderBy('name', 'ASC')->get() : null;
         }
         else
         {
-            
-            $this->selected_province_name = "";
+            $this->selected_province_name = null;
             $this->provinces = null;
             $this->cities = null;
             $this->barangays = null;
-           
-            
         }
         
+    }
+
+    public function updateCitiesList()
+    {
+          if($this->selected_province_name !== "")
+        {
+            $province = Province::where('name', $this->selected_province_name)->get();
+            $province_id = count($province) ? $province->pluck('province_id') : null;
+            $this->cities = $province_id ? City::where('province_id', $province_id)->orderBy('name', 'ASC')->get() : null;
+        }
+        else
+        {
+            $this->selected_city_name = null;
+            $this->cities = null;
+            $this->barangays = null;
+            
+        }
+    }
+    public function updateBarangayList()
+    {
+        if($this->selected_city_name !== "")
+        {
+            $province = Province::where('name', $this->selected_province_name)->get();
+            $province_id = count($province) ? $province->pluck('province_id') : null;
+            $city = City::where('name', $this->selected_city_name)->where('province_id', $province_id)->get();
+            $city_id = count($city) ? $city->pluck('city_id') : null;
+            $this->barangays = $city_id ? Barangay::where('city_id', $city_id)->orderBy('name', 'ASC')->get() : null;            
+        }
+
+        else
+        {
+            $this->selected_barangay_name = null;
+            $this->barangays = null;
+        }
     }
 
     #[On('validate-motorcycle')] 
@@ -120,41 +149,6 @@ class Motorcycle extends Component
         $this->dispatch('validation-success'); //dispatch nya yung validation-success. Check Page.php line 34 
     }
 
-
-    public function updateCitiesList()
-    {
-          if($this->selected_province_name !== "")
-        {
-            $province = Province::where('name', $this->selected_province_name)->get();
-            $province_id = count($province) ? $province->pluck('province_id') : null;
-            $this->cities = $province_id ? City::where('province_id', $province_id)->get() : null;
-        }
-        else
-        {
-            $this->selected_city_name = "";
-            $this->provinces = null;
-            $this->cities = null;
-            $this->barangays = null;
-            
-        }
-    }
-    public function updateBarangayList()
-    {
-          if($this->selected_city_name !== "")
-        {
-            $city = City::where('name', $this->selected_city_name)->get();
-            $city_id = count($city) ? $city->pluck('city_id') : null;
-            $this->barangays = $city_id ? Barangay::where('city_id', $city_id)->get() : null;            
-        }
-        else
-        {
-            $this->selected_barangay_name = "";
-            $this->provinces = null;
-            $this->cities = null;
-            $this->barangays = null;
-            
-        }
-    }
     public function clearProvince()
     {
         $this->selected_province_name = '';
