@@ -103,7 +103,7 @@ class Motorcycle extends Component
             $this->cities = null;
             $this->barangays = null;
         }
-        
+         
     }
 
     public function updateCitiesList()
@@ -132,7 +132,7 @@ class Motorcycle extends Component
             $city_id = count($city) ? $city->pluck('city_id') : null;
             $this->barangays = $city_id ? Barangay::where('city_id', $city_id)->orderBy('name', 'ASC')->get() : null;            
         }
-
+ 
         else
         {
             $this->selected_barangay_name = null;

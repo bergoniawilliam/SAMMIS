@@ -52,10 +52,10 @@
                         <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->engine_number }}</td>
     
                         <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->created_at->format('Y-m-d H:i:s') }}
-                        </td>
+                        </td> 
                         <td class="px-6 py-3 whitespace-nowrap">
                             <div class="flex justify-between space-x-2">
-                                <a href="/reported-motorcycles/edit/{$id}" class="block text-white bg-blue-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" >Update</a>
+                                <a href="/reported-motorcycles/edit/{{ $reported_motorcycle->id }}" class="block text-white bg-blue-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" >Edit</a>
                                 <a class="block text-white bg-red-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete</a>
                             </div>
                         </td>

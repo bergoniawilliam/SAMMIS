@@ -76,7 +76,7 @@ class Owner extends Component
         else
         {
             
-            $this->selected_province_name_owner = "";
+            $this->selected_province_name_owner = null;
             $this->provinces_owner = null;
             $this->cities_owner = null;
             $this->barangays_owner = null;
@@ -100,8 +100,7 @@ class Owner extends Component
         }
         else
         {
-            $this->selected_city_name_owner = "";
-            $this->provinces_owner = null;
+            $this->selected_city_name_owner = null;
             $this->cities_owner = null;
             $this->barangays_owner = null;
             
@@ -111,15 +110,19 @@ class Owner extends Component
     {
           if($this->selected_city_name_owner !== "")
         {
-            $city = City::where('name', $this->selected_city_name_owner)->get();
+            // $city = City::where('name', $this->selected_city_name_owner)->get();
+            // $city_id = count($city) ? $city->pluck('city_id') : null;
+            // $this->barangays_owner = $city_id ? Barangay::where('city_id', $city_id)->get() : null;    
+            
+             $province = Province::where('name', $this->selected_province_name_owner)->get();
+            $province_id = count($province) ? $province->pluck('province_id') : null;
+            $city = City::where('name', $this->selected_city_name_owner)->where('province_id', $province_id)->get();
             $city_id = count($city) ? $city->pluck('city_id') : null;
-            $this->barangays_owner = $city_id ? Barangay::where('city_id', $city_id)->get() : null;            
+            $this->barangays_owner = $city_id ? Barangay::where('city_id', $city_id)->orderBy('name', 'ASC')->get() : null;   
         }
         else
         {
-            $this->selected_barangay_name_owner = "";
-            $this->provinces_owner = null;
-            $this->cities_owner = null;
+            $this->selected_barangay_name_owner = null;
             $this->barangays_owner = null;
             
         }

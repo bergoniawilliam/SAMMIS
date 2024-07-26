@@ -76,7 +76,7 @@ class Reporter extends Component
         else
         {
             
-            $this->selected_province_name_reporter = "";
+            $this->selected_province_name_reporter = null;
             $this->provinces_reporter = null;
             $this->cities_reporter = null;
             $this->barangays_reporter = null;
@@ -101,7 +101,6 @@ class Reporter extends Component
         else
         {
             $this->selected_city_name_reporter = "";
-            $this->provinces_reporter = null;
             $this->cities_reporter = null;
             $this->barangays_reporter = null;
             
@@ -111,16 +110,21 @@ class Reporter extends Component
     {
           if($this->selected_city_name_reporter !== "")
         {
-            $city = City::where('name', $this->selected_city_name_reporter)->get();
+            //  $city = City::where('name', $this->selected_city_name_reporter)->get();
+            // $city_id = count($city) ? $city->pluck('city_id') : null;
+            // $this->barangays_reporter = $city_id ? Barangay::where('city_id', $city_id)->get() : null;         
+                   
+            
+            $province = Province::where('name', $this->selected_province_name_reporter)->get();
+            $province_id = count($province) ? $province->pluck('province_id') : null;
+            $city = City::where('name', $this->selected_city_name_reporter)->where('province_id', $province_id)->get();
             $city_id = count($city) ? $city->pluck('city_id') : null;
-            $this->barangays_reporter = $city_id ? Barangay::where('city_id', $city_id)->get() : null;            
+            $this->barangays_reporter = $city_id ? Barangay::where('city_id', $city_id)->orderBy('name', 'ASC')->get() : null;   
         }
-        else
+        else 
         {
-            $this->selected_barangay_name_reporter = "";
-            $this->provinces_reporter = null;
-            $this->cities_reporter = null;
-            $this->barangays_reporter = null;
+            $this->selected_barangay_name = null;
+            $this->barangays = null;
             
         }
     }

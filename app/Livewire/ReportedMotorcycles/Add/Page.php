@@ -29,7 +29,7 @@ class Page extends Component
                 $this->dispatch('validate-reporter');
                 break;
             case (3):
-                $this->dispatch('validate-owner');
+                $this->dispatch('validate-owner'); 
                 break;
              case (4):
                 $this->dispatch('validate-status');
