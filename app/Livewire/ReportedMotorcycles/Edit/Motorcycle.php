@@ -55,24 +55,13 @@ class Motorcycle extends Component
         return view('livewire.reported-motorcycles.edit.motorcycle');
        
     }
-    public function mount($id)
+
+    #[On('populateReportedMotorcycleForm')] 
+    public function populateReportedMotorcycleForm()
     {
-  
-        $this->reportmotorcycleId = ReportedMotorcycle::find($id);
-        dd($this->reportmotorcycleId);
-        // if($this->user){       
-        //     $this->email = $this->user->email;
-        //     $this->first_name = $this->user->first_name;
-        //     $this->middle_name = $this->user->middle_name;
-        //     $this->last_name = $this->user->last_name;
-        //     $this->qualifier = $this->user->qualifier;
-        //     $this->selected_rank_id = $this->user->rank_id;
-        //     $this->selected_unit_office_id = $this->user->unit_office_id;
-        //     $this->loadInitialStations($this->user->station_id);
-        //     $this->selected_station_name = $this->user->station ? $this->user->station->name : "All";
-        //     $this->isActive = $this->user->isActive;
-        // }
+
     }
+
      protected function rules()
     {
         return [

@@ -5,13 +5,16 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Attributes\On; 
 use Livewire\Attributes\Validate;
+use App\Models\ReportedMotorcycle;
 class Page extends Component
 {
     public $currentForm = 1;
     public $disablePreviousButton=true;
     public $disableNextButton=false;
     public $nextButtonLabel="Next";
-    public $ownerId;
+    public $reportmotorcycle;
+    public $reporter;
+    public $owner;
     public function render() 
     {
         return view('livewire.reported-motorcycles.edit.page')->extends('layouts.app')
@@ -61,5 +64,9 @@ class Page extends Component
     public function clearSuccessMessage()
     {
          session()->forget('message');  
+    }
+
+    public function mount($id){
+        $this->reportmotorcycle = ReportedMotorcycle::find($id);
     }
 }
