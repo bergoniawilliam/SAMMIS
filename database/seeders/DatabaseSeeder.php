@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(UnitOfficesSeeder::class);
         $this->call(StationsSeeder::class);
+        $this->call(PermissionSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(RolesPermissionSeeder::class);
         $this->call(RefRanksSeeder::class);
         $this->call(ReportedMotorcycleOwnerSeeder::class);
         $this->call(MotorcycleReporterSeeder::class);
