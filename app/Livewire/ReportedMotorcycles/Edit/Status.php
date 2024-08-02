@@ -57,7 +57,8 @@ public function updateStatus()
 {
     $this->validate();
 
-    $this->reportedmotorcyclestatus = ReportedMotorcycleStatus::where('reported_motorcycles_id', $this->reportmotorcycleId)->first();
+    $this->reportedmotorcyclestatus = ReportedMotorcycleStatus::where('reported_motorcycles_id', $this->reportmotorcycleId)->orderBy('created_at', 'desc')  // Assuming you have a 'created_at' column
+        ->first();
 
     // Store old values
     $oldValues = [
@@ -70,6 +71,7 @@ public function updateStatus()
         'status' => $this->status,
         'remarks' => $this->remarks,
     ];
+    //  dd($oldValues,$newValues);
 
     // Compare old and new values
     if ($oldValues['status'] !== $newValues['status'] And $oldValues['remarks'] !== $newValues['remarks']) {
@@ -87,7 +89,7 @@ public function updateStatus()
 
         // Add to the audit table or perform other actions as needed
     }elseif($oldValues['status'] === $newValues['status'] And $oldValues['remarks'] === $newValues['remarks']) {
-    //    dd("walang gagawin");
+    //dd("walang gagawin");
         session()->flash('message', 'Reported Motorcycle has been updated successfully!');
         return redirect('reported-motorcycles');
     }elseif($oldValues['status'] === $newValues['status'] And $oldValues['remarks'] !== $newValues['remarks']) {
@@ -95,7 +97,7 @@ public function updateStatus()
         // $this->reportedmotorcyclestatus->remarks = $newValues['remarks'];
         // $this->reportedmotorcyclestatus->updated_by_id = Auth::user()->id;
         // $this->reportedmotorcyclestatus->save();
-        // dd("mag add in kasi nabago remarks");
+        //  dd("mag add in kasi nabago remarks");
         ReportedMotorcycleStatus::create([
             'reported_motorcycles_id' => $this->reportmotorcycleId,
             'status' =>  $this->status,
