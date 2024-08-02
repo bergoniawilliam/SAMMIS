@@ -30,21 +30,22 @@ class RolesPermissionSeeder extends Seeder
             foreach ($resources as $resource) {
                 //view
                 $permissionName = 'view ' . $resource;
-                $this->createRoleIfNotExist($permissionName);
+                $this->createPermissionIfNotExist($permissionName);
                 $permissions[] = $permissionName;
 
                 //create
                 $permissionName = 'create ' . $resource;
-                $this->createRoleIfNotExist($permissionName);
+                $this->createPermissionIfNotExist($permissionName);
                 $permissions[] = $permissionName;
 
                 //update
                $permissionName = 'update ' . $resource;
-                $this->createRoleIfNotExist($permissionName);
+                $this->createPermissionIfNotExist($permissionName);
                 $permissions[] = $permissionName;
 
+                //delete 
                 $permissionName = 'delete ' . $resource;
-                $this->createRoleIfNotExist($permissionName);
+                $this->createPermissionIfNotExist($permissionName);
                 $permissions[] = $permissionName;
             }
             $role->syncPermissions($permissions);
@@ -52,7 +53,7 @@ class RolesPermissionSeeder extends Seeder
 
     }
     
-    public function createRoleIfNotExist($permissionName)
+    public function createPermissionIfNotExist($permissionName)
     {
         $permissions = Permission::pluck('name')->toArray();
         $result = in_array($permissionName, $permissions);
