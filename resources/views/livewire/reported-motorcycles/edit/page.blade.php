@@ -48,6 +48,7 @@
             <span>
                 <h3 class="font-medium leading-tight">Reporter Info</h3>
                 <p class="text-sm">Fill up reporter info</p>
+                
             </span>
         </li>
         <li class="flex items-center {{ $currentForm >= 3 ? 'text-blue-500' : 'text-gray-500' }} space-x-2.5 rtl:space-x-reverse">
@@ -58,16 +59,19 @@
                 <h3 class="font-medium leading-tight">Owner Info</h3>
                 <p class="text-sm">Fill up owner info</p>
             </span>
+           
         </li>
         <li class="flex items-center {{ $currentForm >= 4 ? 'text-blue-500' : 'text-gray-500' }} space-x-2.5 rtl:space-x-reverse">
             <span class="flex items-center justify-center w-8 h-8 border {{ $currentForm >= 4 ? 'border-blue-500' : 'border-gray-500' }} rounded-full shrink-0 dark:border-gray-400">
                 4
             </span>
             <span>
-                <h3 class="font-medium leading-tight">Remarks</h3>
+                <h3 class="font-medium leading-tight">Status and Remarks</h3>
                 <p class="text-sm">Explain the circumstances surrounding the issue</p>
             </span>
+            
         </li>
+         <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" wire:click="skip" >Go to Status and Remarks</button>
     </ol>
 
     <div class="space-y-8" wire:init = "populateForms">

@@ -52,6 +52,17 @@ class Page extends Component
             $this->nextButtonLabel = "Next";
         }
     }
+
+    public function skip()
+    {
+       
+        $this->currentForm = 4;
+        $this->nextButtonLabel = "Submit";
+        $this->disablePreviousButton = false;
+        // dd($this->currentForm);
+
+      
+    }
     #[On('validation-success')] 
     public function handleValidationSuccess()
     {
@@ -88,7 +99,7 @@ class Page extends Component
             $this->dispatch('populate-OwnerForm', $this->ownerId);
             $this->dispatch('populate-StatusForm', $this->reportmotorcycleId);
         }
-    }
+    } 
 
    
 } 
