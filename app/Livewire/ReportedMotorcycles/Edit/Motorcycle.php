@@ -43,33 +43,103 @@ class Motorcycle extends Component
     public $model;
     public $color;
     public $ioc;
-    public $ownerId;
-    public $reporterId;
+    public $reportmotorcycle;
     public $reportmotorcycleId;
+    public $motorcyclereporterId;
+    public $reporter;
+    public $reporterId;
+    public $owner;
+    public $ownerId;
     public $id;
+
+    // #[On('populateReportedMotorcycleForm')]
+    // public function populateReportedMotorcycleForm($reportmotorcycleId, $ownerId, $reporterId)
+    // {
+    //     $this->reportmotorcycle = ReportedMotorcycle::find($reportmotorcycleId);
+    //     if($this->reportmotorcycle){       
+    //         $this->blotter_number = $this->reportmotorcycle->blotter_number;
+            
+    //     }
+    // }
+  
+    //  public function mount($id)
+    // {
+    //     dd($this->id);
+    
+    // }
+  
     public function render()
     {
         $this->motorcycles = MotorcycleReporter::all();
         $this->ranks = RefRank::all();
         $this->unit_offices = UnitOffice::all();
         return view('livewire.reported-motorcycles.edit.motorcycle');
-       
+     
     }
-
-    #[On('populateReportedMotorcycleForm')] 
-    public function populateReportedMotorcycleForm()
+      #[On('populateReported-MotorcycleForm')]
+    public function populateReportedMotorcycleForm($reportmotorcycleId)
     {
-
+         $this->reportmotorcycle = ReportedMotorcycle::find($reportmotorcycleId);
+        if($this->reportmotorcycle){       
+            $this->blotter_number = $this->reportmotorcycle->blotter_number;
+            $this->plate_number = $this->reportmotorcycle->plate_number;
+            $this->chassis_number = $this->reportmotorcycle->chassis_number;
+            $this->engine_number = $this->reportmotorcycle->engine_number;
+            $this->mvfile_number = $this->reportmotorcycle->mvfile_number;
+            $this->selected_region_name = $this->reportmotorcycle->region;
+            $this->selected_province_name = $this->reportmotorcycle->province;
+            $this->selected_city_name = $this->reportmotorcycle->municipality;
+            $this->selected_barangay_name = $this->reportmotorcycle->barangay;
+            $this->street = $this->reportmotorcycle->street;
+            $this->type = $this->reportmotorcycle->type;
+            $this->make = $this->reportmotorcycle->make;
+            $this->model = $this->reportmotorcycle->model;
+            $this->color = $this->reportmotorcycle->color;
+            $this->ioc = $this->reportmotorcycle->ioc;
+            $this->date_time_missing = $this->reportmotorcycle->date_time_missing;
+        }
     }
+    #[On('update-reportedMotorcycle')]
+    public function updatereportedMotorcycle($ownerId,$motorcyclereporterId)
+    {
+        $this->validate();
+        $this->reportmotorcycle = ReportedMotorcycle::find($this->reportmotorcycle->id);
+        $this->reportmotorcycle->blotter_number = $this->blotter_number;
+        $this->reportmotorcycle->plate_number = $this->plate_number;
+        $this->reportmotorcycle->chassis_number = $this->chassis_number;
+        $this->reportmotorcycle->engine_number = $this->engine_number;
+        $this->reportmotorcycle->region = $this->selected_region_name;
+        $this->reportmotorcycle->province = $this->selected_province_name;
+        $this->reportmotorcycle->municipality = $this->selected_city_name;
+        $this->reportmotorcycle->barangay = $this->selected_barangay_name;
+        $this->reportmotorcycle->street = $this->street;
+        $this->reportmotorcycle->date_time_missing = $this->date_time_missing;
+        $this->reportmotorcycle->motorcycle_reporters_id = $motorcyclereporterId;
+        $this->reportmotorcycle->reported_motorcycle_owners_id = $ownerId;
+        $this->reportmotorcycle->type = $this->type;
+        $this->reportmotorcycle->make = $this->make;
+        $this->reportmotorcycle->model = $this->model;
+        $this->reportmotorcycle->color = $this->color;
+        $this->reportmotorcycle->ioc = $this->ioc;
+        $this->reportmotorcycle->station_id = Auth::user()->station_id;
+        $this->reportmotorcycle->updated_by_id = Auth::user()->id;
+    //  dd("asdasdasd",$this->reportmotorcycle);
+        $this->reportmotorcycle->save();
+        
+        $this->dispatch('update-status',$ownerId);
+        // session()->flash('message', 'User has been updated successfully!');
+    }
+
+
 
      protected function rules()
     {
         return [
-           'blotter_number' => ['required', 'string', Rule::unique('reported_motorcycles')],
-           'plate_number' => ['required', 'string', Rule::unique('reported_motorcycles')],
-           'chassis_number' => ['required', 'string', Rule::unique('reported_motorcycles')],
-           'engine_number' => ['required', 'string', Rule::unique('reported_motorcycles')],
-           'mvfile_number' => ['required', 'string', Rule::unique('reported_motorcycles')],
+           'blotter_number' => ['required', 'string', Rule::unique('reported_motorcycles')->ignore($this->reportmotorcycle->id)],
+           'plate_number' => ['required', 'string', Rule::unique('reported_motorcycles')->ignore($this->reportmotorcycle->id)],
+           'chassis_number' => ['required', 'string', Rule::unique('reported_motorcycles')->ignore($this->reportmotorcycle->id)],
+           'engine_number' => ['required', 'string', Rule::unique('reported_motorcycles')->ignore($this->reportmotorcycle->id)],
+           'mvfile_number' => ['required', 'string', Rule::unique('reported_motorcycles')->ignore($this->reportmotorcycle->id)],
            'selected_region_name' => ['required', 'string'],
            'selected_province_name' => ['required', 'string'],
            'selected_city_name' => ['required', 'string'],
@@ -91,6 +161,7 @@ class Motorcycle extends Component
         $this->date_time_missing = $this->date_time_missing ? Carbon::parse($this->date_time_missing)->format('Y-m-d H:i:s') : null;
         $this->validate();
         $this->dispatch('validation-success'); //dispatch nya yung validation-success. Check Page.php line 34 
+        
     }
 
 public function loadInitAddresses()
@@ -169,37 +240,7 @@ public function loadInitAddresses()
     {
         $this->selected_barangay_name = '';
     }
-    // #[On('store-motorcycle')] 
-    // public function storeMotorcyle($ownerId , $reporterId)
-    // {
-    //         $reportmotorcycle = ReportedMotorcycle::create([
-    //         'blotter_number' => $this->blotter_number,
-    //         'plate_number' => $this->plate_number,
-    //         'chassis_number' => $this->chassis_number,
-    //         'engine_number' => $this->engine_number,
-    //         'region' => $this->selected_region_name,
-    //         'province' => $this->selected_province_name,
-    //         'municipality' => $this->selected_city_name,
-    //         'barangay' => $this->selected_barangay_name,
-    //         'mvfile_number' => $this->mvfile_number,
-    //         'street' => $this->street,
-    //         'date_time_missing' => $this->date_time_missing,
-    //         'date_time_missing' => $this->date_time_missing,
-    //         'motorcycle_reporters_id' => $reporterId,
-    //         'reported_motorcycle_owners_id' => $ownerId,
-    //         'type' => $this->type,
-    //         'make' => $this->make,
-    //         'model' => $this->model,
-    //         'color' => $this->color,
-    //         'ioc' => $this->ioc,
-    //         'station_id' => Auth::user()->station_id,
-    //         'created_by_id' => Auth::user()->id,
-    //         'updated_by_id' => Auth::user()->id,
-    //     ]);
-    //         $reportmotorcycleId = $reportmotorcycle->id;
-    //         $this->dispatch('store-status', $reportmotorcycleId);
-       
-    // }
+    
     
 }
  

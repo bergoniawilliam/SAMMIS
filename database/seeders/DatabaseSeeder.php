@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MotorcycleReporterSeeder::class);
         $this->call(ReportedMotorcycleOwnerSeeder::class);      
         $this->call(ReportedMotorcyclesSeeder::class);
+        $this->call(StatusSeeder::class);
          
     }
 }

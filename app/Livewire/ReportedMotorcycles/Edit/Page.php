@@ -13,12 +13,16 @@ class Page extends Component
     public $disableNextButton=false;
     public $nextButtonLabel="Next";
     public $reportmotorcycle;
+    public $reportmotorcycleId;
     public $reporter;
+    public $reporterId;
     public $owner;
+    public $ownerId;
     public function render() 
     {
         return view('livewire.reported-motorcycles.edit.page')->extends('layouts.app')
             ->section('content');
+        
     }
      public function nextForm()
     {
@@ -43,6 +47,10 @@ class Page extends Component
         $this->currentForm--;
         $this->disableNextButton = false;
         $this->disablePreviousButton = $this->currentForm === 1 ? true: false; 
+         if($this->currentForm === 3)
+        {
+            $this->nextButtonLabel = "Next";
+        }
     }
     #[On('validation-success')] 
     public function handleValidationSuccess()
@@ -68,5 +76,19 @@ class Page extends Component
 
     public function mount($id){
         $this->reportmotorcycle = ReportedMotorcycle::find($id);
+        $this->reportmotorcycleId = $this->reportmotorcycle->id;
+        $this->reporterId = $this->reportmotorcycle->motorcycle_reporters_id;
+        $this->ownerId = $this->reportmotorcycle->reported_motorcycle_owners_id;
     }
-}
+    public function populateForms(){
+        if( $this->reportmotorcycleId)
+        {
+            $this->dispatch('populateReported-MotorcycleForm', $this->reportmotorcycleId);
+            $this->dispatch('populate-ReporterForm', $this->reporterId);
+            $this->dispatch('populate-OwnerForm', $this->ownerId);
+            $this->dispatch('populate-StatusForm', $this->reportmotorcycleId);
+        }
+    }
+
+   
+} 

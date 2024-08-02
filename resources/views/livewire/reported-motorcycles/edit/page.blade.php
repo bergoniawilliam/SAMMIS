@@ -70,7 +70,7 @@
         </li>
     </ol>
 
-    <div class="space-y-8">
+    <div class="space-y-8" wire:init = "populateForms">
         <!-- Motorcycle Form -->
         <div class="{{ $currentForm === 1 ? 'block' : 'hidden' }}">
             @livewire('reported-motorcycles.edit.motorcycle')
@@ -78,7 +78,7 @@
         <!-- Reporter Form -->
         <div class="{{ $currentForm === 2 ? 'block' : 'hidden' }}">
             @livewire('reported-motorcycles.edit.reporter')
-        </div>
+        </div> 
         <!-- Owner Form -->
         <div class="{{ $currentForm === 3 ? 'block' : 'hidden' }}">
             @livewire('reported-motorcycles.edit.owner')

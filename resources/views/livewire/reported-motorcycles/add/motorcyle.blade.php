@@ -2,7 +2,7 @@
     <h1 class="text-2xl font-bold">Motorcycle Info</h1>
     <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-0 sm:gap-0 md:gap-0 lg:gap-4 xl:gap-4 space-y-4 sm:space-y-4 md:space-y-4 lg:space-y-0 xl:space-y-0">
         <div class="border rounded-lg p-4 col-span-2 shadow-md">
-            <b>Motor Cycle Details</b>
+            <b>Motor Cycle Details {{ $reportmotorcycleId }}</b>
             <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-0 sm:gap-0 nd:gap-0 lg:gap-4 xl:gap-4 space-y-4 sm:space-y-4 md:space-y-8 lg:space-y-0 xl:space-y-0">
                 <div>
                     <label for="blotter_number"
@@ -59,7 +59,7 @@
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
                     <input type="text" wire:model.lazy="type" id="type" name="type"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 @error('type') border border-red-500 @enderror"
-                        placeholder="Type" Value="MC">
+                        placeholder="Type" Value="MC" readonly>
                     @error('type')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror

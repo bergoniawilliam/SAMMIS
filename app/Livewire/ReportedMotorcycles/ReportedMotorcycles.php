@@ -46,4 +46,6 @@ class ReportedMotorcycles extends Component
     {
          session()->forget('message');  
     }
+   
+    
 }

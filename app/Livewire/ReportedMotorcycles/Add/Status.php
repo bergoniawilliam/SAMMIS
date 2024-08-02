@@ -35,7 +35,6 @@ class Status extends Component
     #[On('store-status')] 
     public function storeStatus($reportmotorcycleId)
     {
-       
             ReportedMotorcycleStatus::create([
             'reported_motorcycles_id' => $reportmotorcycleId,
             'status' => 'Missing/Stolen',

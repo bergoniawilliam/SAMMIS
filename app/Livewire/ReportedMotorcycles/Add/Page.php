@@ -42,6 +42,10 @@ class Page extends Component
         $this->currentForm--;
         $this->disableNextButton = false;
         $this->disablePreviousButton = $this->currentForm === 1 ? true : false; 
+         if($this->currentForm === 3)
+        {
+            $this->nextButtonLabel = "Next";
+        }
     }
  
     #[On('validation-success')] 

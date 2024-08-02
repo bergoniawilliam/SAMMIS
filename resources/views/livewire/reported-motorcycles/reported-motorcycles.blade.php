@@ -31,30 +31,30 @@
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr> 
-                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Id</th>
+                    <!-- <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Id</th> -->
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Blotter No</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Plate Number</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">MV File No</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Chassis No</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Engine No</th>
-                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Created At</th>
+                    <!-- <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Created At</th> -->
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Actions</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
                 @foreach ($reported_motorcycles as $reported_motorcycle)
                     <tr>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->id }}</td>
+                        <!-- <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->id }}</td> -->
                         <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->blotter_number }}</td>
                         <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->plate_number }}</td>
                         <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->mvfile_number }}</td>
                         <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->chassis_number }}</td>
                         <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->engine_number }}</td>
     
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->created_at->format('Y-m-d H:i:s') }}
+                        <!-- <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->created_at->format('Y-m-d H:i:s') }} -->
                         </td> 
                         <td class="px-6 py-3 whitespace-nowrap">
-                            <div class="flex justify-between space-x-2">
+                            <div class="flex space-x-2">
                                 <a href="/reported-motorcycles/edit/{{ $reported_motorcycle->id }}" class="block text-white bg-blue-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" >Edit</a>
                                 <a class="block text-white bg-red-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete</a>
                             </div>

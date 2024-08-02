@@ -28,7 +28,7 @@ class UsersEdit extends Component
     public $selected_station_name="";
     public $selected_rank_id=null;
     public $selected_station="All";
-
+ 
     protected function rules()
     {
         return [
