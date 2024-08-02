@@ -13,13 +13,13 @@ class Status extends Component
     public $remarks;
     public $results;
     public $reportmotorcycleId;
-    public $reported_motorcycles;
+    public $reported_motorcycle_statuses;
 
     public function render()
     {
-        $this->reported_motorcycles = ReportedMotorcycleStatus::where('reported_motorcycles_id', $this->reportmotorcycleId)->get();
+        $this->reported_motorcycle_statuses = ReportedMotorcycleStatus::where('reported_motorcycles_id', $this->reportmotorcycleId)->get();
         return view('livewire.reported-motorcycles.edit.status', [
-        'reported_motorcycles' => $this->reported_motorcycles,
+        'reported_motorcycles' => $this->reported_motorcycle_statuses,
         ]);
     }
      protected function rules()

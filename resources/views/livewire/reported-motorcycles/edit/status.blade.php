@@ -14,24 +14,22 @@
                 <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
         </div>
+        {{ Now() }}
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr> 
                     <!-- <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Id</th> -->
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Status</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Remarks</th>
-                    
+                    <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Updated at</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                @foreach ($reported_motorcycles as $reported_motorcycle)
-                    <tr>
-                        <!-- <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->id }}</td> -->
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->status }}</td>
-                        <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->remarks }}</td>
-                      
-    
-                        <!-- <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->created_at->format('Y-m-d H:i:s') }} -->
+                @foreach ($reported_motorcycle_statuses as $reported_motorcycle_status)
+                    <tr class="hover:cursor-pointer hover:bg-gray-200">
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle_status->status }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle_status->remarks }}</td>
+                        <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle_status->created_at->format('Y-m-d h:i A') }}
                         </td> 
                      
                     </tr>

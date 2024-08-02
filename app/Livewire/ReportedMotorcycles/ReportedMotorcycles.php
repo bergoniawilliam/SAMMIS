@@ -38,6 +38,7 @@ class ReportedMotorcycles extends Component
                   ->orWhere('mvfile_number', 'LIKE', '%' . $this->search . '%')
                   ->orWhere('chassis_number', 'LIKE', '%' . $this->search . '%')
                   ->orWhere('engine_number', 'LIKE', '%' . $this->search . '%')
+                  ->orderBy('created_at', 'DESC')
                   ->paginate($this->perPage),
         ])->extends('layouts.app')
         ->section('content');
