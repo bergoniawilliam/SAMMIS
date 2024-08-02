@@ -9,6 +9,7 @@ use App\Models\MotorcycleReporter;
 use App\Models\ReportedMotorcycleOwner;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Provider\Base;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ReportedMotorcycle>
@@ -24,11 +25,11 @@ class ReportedMotorcycleFactory extends Factory
     {
         $region = Region::inRandomOrder()->first();
         // Get random province from the selected region
-        $province = $region->provinces()->inRandomOrder()->first();
+        $province = $region ? $region->provinces()->inRandomOrder()->first() : null;
         // Get random city from the selected province
-        $city = $province->cities()->inRandomOrder()->first();
+        $city = $province ? $province->cities()->inRandomOrder()->first() : null;
         // Get random barangay from the selected city
-        $barangay = $city->barangays()->inRandomOrder()->first();
+        $barangay = $city ? $city->barangays()->inRandomOrder()->first() : null;
 
         $brands = ['Honda', 'Yamaha', 'Suzuki', 'Kawasaki', 'Ducati', 'Harley-Davidson', 'BMW', 'Triumph'];
         $brandsAndModels = [
@@ -49,11 +50,11 @@ class ReportedMotorcycleFactory extends Factory
         return [
             'blotter_number' => Str::random(8),
             'region' => $region->name,
-            'province' => $province->name,
-            'municipality' => $city->name,
-            'barangay' => $barangay->name,
+            'province' => $region ? $province->name : 'Unknown',
+            'municipality' => $city ? $city->name : 'Unknown',
+            'barangay' => $barangay ? $barangay->name : 'Unknown',
             'street' => $this->faker->streetAddress,
-            'plate_number' => strtoupper($this->generator->lexify('???')) . ' ' .  $this->generator->numerify('###'),
+            'plate_number' => strtoupper($this->faker->lexify('???')) . ' ' .  $this->faker->numerify('###'),
             'mvfile_number' => 'MV' . Str::random(9),
             'chassis_number' => 'CH' . Str::random(9),
             'engine_number' => 'EN' . Str::random(9),

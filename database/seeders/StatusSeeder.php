@@ -13,14 +13,8 @@ class StatusSeeder extends Seeder
      */
     public function run(): void
     {
-      foreach (range(1, 30) as $index) {
-    ReportedMotorcycleStatus::create([
-        'reported_motorcycles_id' => rand(1, 40), // Assuming a foreign key
-        'status' => 'Missing/Stolen',
-        'remarks' => 'Remarks for status ' . $index,
-        'created_by_id' => 1, // Assuming a foreign key
-        'updated_by_id' => 1, // Assuming a foreign key
-    ]);
-}
+        ReportedMotorcycleStatus::factory()
+        ->count(200)
+        ->create();
     }
 }

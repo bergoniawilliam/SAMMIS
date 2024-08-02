@@ -6,6 +6,7 @@ use App\Models\ReportedMotorcycle;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+
 class ReportedMotorcyclesSeeder extends Seeder
 {
     /**
