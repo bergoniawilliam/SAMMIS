@@ -13,23 +13,8 @@ class MotorcycleReporterSeeder extends Seeder
      */
     public function run(): void
     {
-        MotorcycleReporter::create([
-
-            'first_name' => 'william',
-            'middle_name' => 'dorado',
-            'last_name' => 'bergonia 1',
-            'qualifier' => 'Barangay 1',
-            'cellphone_number' => '1',
-            'region' => 'Region 1',
-            'province' => 'Province 1',
-            'municipality' => 'Municipality 1',
-            'barangay' => 'Barangay 1',
-            'street' => 'Street 1',
-            'home_unit_number' => 'Street 1',
-            'created_by_id' => 1, // Assuming a foreign key
-            'updated_by_id' => 1, // Assuming a foreign key
-           
-         
-        ]);
+        MotorcycleReporter::factory()
+        ->count(50)
+        ->create();
     }
 }

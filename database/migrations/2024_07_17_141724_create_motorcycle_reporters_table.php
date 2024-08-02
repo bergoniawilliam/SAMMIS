@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->string('qualifier')->nullable();
-            $table->integer('cellphone_number');
+            $table->string('cellphone_number');
             $table->string('region');
             $table->string('province');
             $table->string('municipality');
