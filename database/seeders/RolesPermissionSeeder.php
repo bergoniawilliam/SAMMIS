@@ -16,14 +16,7 @@ class RolesPermissionSeeder extends Seeder
 
     public function run(): void
     {
-
-
-        $roles = [
-            'admin',
-            'encoder',
-            'verifier',
-            'viewer',
-        ];
+        $roles = Role::pluck('name');
 
         $resources = ['user','reportedmotorcycle'];
 

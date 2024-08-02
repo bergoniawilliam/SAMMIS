@@ -65,19 +65,19 @@ class UserSeeder extends Seeder
       $third_user->save();
       $third_user->assignRole('verifier');
 
-      // $fourth_user = new User();
-      // $fourth_user->email = 'songohan@gmail.com';
-      // $fourth_user->password = Hash::make('password123');
-      // $fourth_user->rank_id = 10;
-      // $fourth_user->first_name = 'Son';
-      // $fourth_user->middle_name = 'Gohan';
-      // $fourth_user->last_name = 'Kame';
-      // $fourth_user->qualifier = 'Jr.';
-      // $fourth_user->station_id = 50;
-      // $fourth_user->unit_office_id = 4;
-      // $fourth_user->isActive = '0';
-      // $fourth_user->save();
-      // $fourth_user->assignRole('viewer');
+      $fourth_user = new User();
+      $fourth_user->email = 'songohan@gmail.com';
+      $fourth_user->password = Hash::make('password123');
+      $fourth_user->rank_id = 10;
+      $fourth_user->first_name = 'Son';
+      $fourth_user->middle_name = 'Gohan';
+      $fourth_user->last_name = 'Kame';
+      $fourth_user->qualifier = 'Jr.';
+      $fourth_user->station_id = 50;
+      $fourth_user->unit_office_id = 4;
+      $fourth_user->isActive = '0';
+      $fourth_user->save();
+      $fourth_user->assignRole('viewer');
 
       // User::factory()
       // ->count(50)
