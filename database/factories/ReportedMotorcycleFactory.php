@@ -5,13 +5,15 @@ use App\Models\Region;
 use App\Models\Province;
 use App\Models\City;
 use App\Models\Barangay;
+use App\Models\MotorcycleReporter;
+use App\Models\ReportedMotorcycleOwner;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Provider\Base;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ReportedMotorcycle>
  */
-class MotorcycleFactory extends Factory
+class ReportedMotorcycleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -56,8 +58,8 @@ class MotorcycleFactory extends Factory
             'chassis_number' => 'CH' . Str::random(9),
             'engine_number' => 'EN' . Str::random(9),
             'date_time_missing' => $this->faker->dateTimeBetween('-1 years', 'now'),
-            'motorcycle_reporters_id' => 1,
-            'reported_motorcycle_owners_id' => 1,
+            'motorcycle_reporters_id' => MotorcycleReporter::inRandomOrder()->first()->id,
+            'reported_motorcycle_owners_id' => ReportedMotorcycleOwner::inRandomOrder()->first()->id,
             'type' => 'MC',
             'make' => $brand,
             'model' => $model,
