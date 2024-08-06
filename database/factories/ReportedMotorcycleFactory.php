@@ -49,7 +49,7 @@ class ReportedMotorcycleFactory extends Factory
         $model = $this->faker->randomElement($brandsAndModels[$brand]);
         return [
             'blotter_number' => Str::random(8),
-            'region' => $region->name,
+            'region' => $region ? $region->name : 'Unknown',
             'province' => $region ? $province->name : 'Unknown',
             'municipality' => $city ? $city->name : 'Unknown',
             'barangay' => $barangay ? $barangay->name : 'Unknown',

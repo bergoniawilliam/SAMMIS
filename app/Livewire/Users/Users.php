@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Station;
 use Livewire\WithPagination;
+use Auth;
 
 use Livewire\Attributes\On;
 class Users extends Component
@@ -25,7 +26,9 @@ class Users extends Component
 
     public function render()
     {
-
+        if(!Auth::user()->can('view user')){
+            abort(403);
+        }
         return view('livewire.users.users', [
             'users' =>  User::where('email', 'LIKE', '%' . $this->search . '%')
                   ->orWhere('first_name', 'LIKE', '%' . $this->search . '%')

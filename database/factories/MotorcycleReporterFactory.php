@@ -37,7 +37,7 @@ class MotorcycleReporterFactory extends Factory
             'last_name' => $this->faker->lastName,
             'qualifier' => $suffix,
             'cellphone_number' => $this->faker->phoneNumber,
-            'region' => $region->name,
+            'region' => $region ? $region->name : 'Unknown',
             'province' => $region ? $province->name : 'Unknown',
             'municipality' => $city ? $city->name : 'Unknown',
             'barangay' => $barangay ? $barangay->name : 'Unknown',

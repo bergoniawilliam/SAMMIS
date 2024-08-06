@@ -18,7 +18,7 @@ class RolesPermissionSeeder extends Seeder
     {
         $roles = Role::pluck('name');
 
-        $resources = ['user','reportedmotorcycle'];
+        
 
         foreach ($roles as $roleName)
         {
@@ -26,29 +26,74 @@ class RolesPermissionSeeder extends Seeder
             if (! $role) {
                 $role = Role::create(['name' => $roleName]);
             }
-            $permissions = [];
-            foreach ($resources as $resource) {
-                //view
-                $permissionName = 'view ' . $resource;
-                $this->createPermissionIfNotExist($permissionName);
-                $permissions[] = $permissionName;
-
-                //create
-                $permissionName = 'create ' . $resource;
-                $this->createPermissionIfNotExist($permissionName);
-                $permissions[] = $permissionName;
-
-                //update
-               $permissionName = 'update ' . $resource;
-                $this->createPermissionIfNotExist($permissionName);
-                $permissions[] = $permissionName;
-
-                //delete 
-                $permissionName = 'delete ' . $resource;
-                $this->createPermissionIfNotExist($permissionName);
-                $permissions[] = $permissionName;
+            
+            if($roleName === 'admin')
+            {
+                $permissions = [];
+                $resources = ['user','reportedmotorcycle'];
+                foreach ($resources as $resource)
+                {
+                    $permissionList = ['view','create','update','delete'];
+                    foreach($permissionList as $access)
+                    {
+                        $permissionName = $access . ' ' . $resource;
+                        $this->createPermissionIfNotExist($permissionName);
+                        $permissions[] = $permissionName;
+                    }
+                    $role->syncPermissions($permissions);
+                }
             }
-            $role->syncPermissions($permissions);
+
+            if($roleName === 'encoder')
+            {
+                $permissions = [];
+                $resources = ['reportedmotorcycle'];
+                foreach ($resources as $resource)
+                {
+                    $permissionList = ['view','create','update','delete'];
+                    foreach($permissionList as $access)
+                    {
+                        $permissionName = $access . ' ' . $resource;
+                        $this->createPermissionIfNotExist($permissionName);
+                        $permissions[] = $permissionName;
+                    }
+                    $role->syncPermissions($permissions);
+                }
+            }
+
+            if($roleName === 'verifier')
+            {
+                $permissions = [];
+                $resources = ['reportedmotorcycle'];
+                foreach ($resources as $resource)
+                {
+                    $permissionList = ['view'];
+                    foreach($permissionList as $access)
+                    {
+                        $permissionName = $access . ' ' . $resource;
+                        $this->createPermissionIfNotExist($permissionName);
+                        $permissions[] = $permissionName;
+                    }
+                    $role->syncPermissions($permissions);
+                }
+            }
+
+            if($roleName === 'viewer')
+            {
+                $permissions = [];
+                $resources = ['reportedmotorcycle'];
+                foreach ($resources as $resource)
+                {
+                    $permissionList = ['view'];
+                    foreach($permissionList as $access)
+                    {
+                        $permissionName = $access . ' ' . $resource;
+                        $this->createPermissionIfNotExist($permissionName);
+                        $permissions[] = $permissionName;
+                    }
+                    $role->syncPermissions($permissions);
+                }
+            }
         }
 
     }

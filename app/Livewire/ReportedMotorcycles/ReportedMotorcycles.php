@@ -10,6 +10,7 @@ use App\Models\Province;
 use App\Models\City;
 use App\Models\Barangay;
 use Livewire\WithPagination;
+use Auth;
 
 class ReportedMotorcycles extends Component
 {
@@ -29,7 +30,10 @@ class ReportedMotorcycles extends Component
     }
     public function render()
     {
-        
+        if(!Auth::user()->can('view reportedmotorcycle')){
+            abort(403);
+        }
+
         $this->ranks = RefRank::all();
         $this->unit_offices = UnitOffice::all();
         return view('livewire.reported-motorcycles.reported-motorcycles', [
@@ -45,7 +49,7 @@ class ReportedMotorcycles extends Component
     }
     public function clearSuccessMessage()
     {
-         session()->forget('message');  
+        session()->forget('message');
     }
    
     
