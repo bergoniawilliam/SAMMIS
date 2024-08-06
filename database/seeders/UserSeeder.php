@@ -79,8 +79,8 @@ class UserSeeder extends Seeder
       $fourth_user->save();
       $fourth_user->assignRole('viewer');
 
-      // User::factory()
-      // ->count(50)
-      // ->create();
+      User::factory()
+      ->count(50)
+      ->create();
     }
 }

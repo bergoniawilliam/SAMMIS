@@ -1,5 +1,6 @@
 <div>
    <h1>User Access Control</h1>
+        <input type="checkbox" {{ $checked ? 'checked' : '' }}/>
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
