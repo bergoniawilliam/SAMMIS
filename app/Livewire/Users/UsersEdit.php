@@ -121,9 +121,10 @@ class UsersEdit extends Component
         $user->station_id = $this->getStationId($this->selected_station_name);
         $user->unit_office_id = $this->selected_unit_office_id ? $this->selected_unit_office_id : null;
         $user->isActive = $this->isActive;
-        $user->save();
+        // $user->save();
 
         $newValues = $user->getDirty();
+        // dd($newValues);
         $changes = [];
         foreach ($newValues as $attribute => $newValue)
         {
@@ -133,14 +134,14 @@ class UsersEdit extends Component
 
         // dd($changes);
 
-        // if (!empty($user->getDirty())) {
-        //     AuditTrailUser::create([
-        //         'user_id' => $this->user->id,
-        //         'action' => 'update',
-        //         'updated_fields' => $changes,
-        //     ]);
-        //     $user->save();
-        // }
+        if (!empty($user->getDirty())) {
+            AuditTrailUser::create([
+                'user_id' => $this->user->id,
+                'action' => 'update',
+                'updated_fields' => $changes,
+            ]);
+            $user->save();
+        }
 
 
         session()->flash('message', 'User has been updated successfully!');

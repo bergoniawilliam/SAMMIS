@@ -7,8 +7,8 @@ use Livewire\Component;
 
 class UserAccessControl extends Component
 {
-    public $roleUserCounts;
 
+    public $roleUserCounts = [];
     public $checked = true;
     
     public function render()
@@ -17,12 +17,20 @@ class UserAccessControl extends Component
         ->extends('layouts.app')->section('content');
     }
 
+  
+       
+
     public function mount()
     {
         $roles = Role::all();
 
         $this->roleUserCounts = $roles->mapWithKeys(function ($role) {
-            return [$role->name => User::role($role->name)->count()];
+            return [
+                $role->id => [
+                    'name' => $role->name,
+                    'count' => User::role($role->name)->count(),
+                ],
+            ];
         });
         
     }

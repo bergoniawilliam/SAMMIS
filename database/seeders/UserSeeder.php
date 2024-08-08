@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
       Role::create(['name' => 'encoder']);
       Role::create(['name' => 'verifier']);
       Role::create(['name' => 'viewer']);
+      Role::create(['name' => 'developer']);
 
 
       $first_user = new User();
@@ -77,7 +78,21 @@ class UserSeeder extends Seeder
       $fourth_user->unit_office_id = 4;
       $fourth_user->isActive = '0';
       $fourth_user->save();
-      $fourth_user->assignRole('viewer');
+      $fourth_user->assignRole('viewer'); 
+
+      $fifth_user = new User();
+      $fifth_user->email = 'delevoper@gmail.com';
+      $fifth_user->password = Hash::make('password123');
+      $fifth_user->rank_id = 16;
+      $fifth_user->first_name = 'Juan';
+      $fifth_user->middle_name = 'dela';
+      $fifth_user->last_name = 'Cruz';
+      $fifth_user->qualifier = 'Jr.';
+      $fifth_user->station_id = 50;
+      $fifth_user->unit_office_id = 4;
+      $fifth_user->isActive = '0';
+      $fifth_user->save();
+      $fifth_user->assignRole('developer'); 
 
       User::factory()
       ->count(50)

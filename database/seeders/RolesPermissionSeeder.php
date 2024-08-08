@@ -94,6 +94,22 @@ class RolesPermissionSeeder extends Seeder
                     $role->syncPermissions($permissions);
                 }
             }
+             if($roleName === 'developer')
+            {
+                $permissions = [];
+                $resources = ['developer'];
+                foreach ($resources as $resource)
+                {
+                    $permissionList = ['view','create','update','delete'];
+                    foreach($permissionList as $access)
+                    {
+                        $permissionName = $access . ' ' . $resource;
+                        $this->createPermissionIfNotExist($permissionName);
+                        $permissions[] = $permissionName;
+                    }
+                    $role->syncPermissions($permissions);
+                }
+            }
         }
 
     }
