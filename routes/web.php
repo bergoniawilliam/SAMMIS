@@ -9,7 +9,7 @@ use App\Livewire\Users\UsersAdd;
 use App\Livewire\Users\UsersEdit;
 use App\Livewire\Users\UsersDelete;
 use App\Livewire\ReportedMotorcycles\ReportedMotorcycles;
-use App\Livewire\ReportedMotorcycles\View\ReportedMotorcycle;
+use App\Livewire\ReportedMotorcycles\View\Page;
 use App\Livewire\ReportedMotorcycles\Add\Page as AddMotorPage;
 use App\Livewire\ReportedMotorcycles\Edit\Page as EditMotorPage;
 use App\Livewire\UserAccessControl\UserAccessControl;
@@ -46,7 +46,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reported-motorcycles', ReportedMotorcycles::class)->name('reported-motorcycles');
     Route::get('/reported-motorcycles/add', AddMotorPage::class)->name('reported-motorcycles.add');
     Route::get('/reported-motorcycles/edit/{id}', EditMotorPage::class)->name('reported-motorcycles.edit');
-    Route::get('/reported-motorcycles/view/{id}', ReportedMotorcycle::class)->name('reported-motorcycles.view-reported-motorcycle');
+    Route::get('/reported-motorcycles/view/{id}', Page::class)->name('reported-motorcycles.view-reported-motorcycle');
+    
     
     Route::get('/user-access-control', UserAccessControl::class)->name('user-access-control');
     Route::get('/user-access-control/edit-permission/{id}', EditPermission::class)->name('user-access-control.edit-permission');

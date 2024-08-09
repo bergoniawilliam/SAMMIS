@@ -1,11 +1,12 @@
 <div class="space-y-4">
     <div class="flex justify-between item-center">
         <h1 class="text-2xl font-bold">USERS</h1>
-
-        <a href="{{ route('users.add') }}"
-            class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-            Add User
-        </a>
+        @can("create user")
+            <a href="{{ route('users.add') }}"
+                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                Add User
+            </a>
+        @endcan
     </div>
     <div class="space-y-4">
         @if (session()->has('message'))
@@ -74,7 +75,9 @@
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Unit/Office</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Station</th>
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Created At</th>
+                    @can('update user')
                     <th class="px-6 py-3 text-left text-xs font-large text-gray-500">Actions</th>
+                    @endcan
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -96,8 +99,11 @@
                         </td>
                         <td class="px-6 py-3 whitespace-nowrap">
                             <div class="flex justify-between space-x-2">
-                                <a
-                                    href="/users/edit/{{ $user->id }}"class="block text-white bg-blue-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Edit</a>
+                                @can('update user')
+                                    <a
+                                        href="/users/edit/{{ $user->id }}"class="block text-white bg-blue-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Edit
+                                    </a>
+                                @endcan
                                 <!-- <a
                                     href="/users/delete/{{ $user->id }}"class="block text-white bg-red-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete</a> -->
                             </div>

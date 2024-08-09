@@ -64,7 +64,7 @@
                                     <a class="block text-white bg-red-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete</a>
                                     @endcan
                                     @can('view reportedmotorcycle')
-                                    <a class="block text-white bg-yellow-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">View</a>
+                                    <a href="/reported-motorcycles/view/{{ $reported_motorcycle->id }}" class="block text-white bg-yellow-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">View</a>
                                     @endcan
                                 </div>
                             </td>

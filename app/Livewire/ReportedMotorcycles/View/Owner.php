@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\ReportedMotorcycles\Edit;
+namespace App\Livewire\ReportedMotorcycles\View;
 
 use App\Models\MotorcycleReporter;
 use App\Models\ReportedMotorcycleOwner;
@@ -15,10 +15,8 @@ use App\Models\Province;
 use App\Models\City;
 use App\Models\Barangay;
 use Livewire\Attributes\On;
-
 class Owner extends Component
-{
-    public $owner_name;
+{   public $owner_name;
     public $reporter_name;
     public $motor_model;
     public $selected_region_name_owner;
@@ -43,9 +41,9 @@ class Owner extends Component
         $this->motorcycles = MotorcycleReporter::all();
         $this->ranks = RefRank::all();
         $this->unit_offices = UnitOffice::all();
-        return view('livewire.reported-motorcycles.edit.owner');
+        return view('livewire.reported-motorcycles.view.owner');
     }
-     protected function rules()
+    protected function rules()
     {
         return [
             'first_name_owner' => ['required', 'string'],   
