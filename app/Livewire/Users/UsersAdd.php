@@ -24,6 +24,7 @@ class UsersAdd extends Component
     public $selected_unit_office_id=null;
     public $isActive=false;
     public $users;
+    public $userRole;
 
     public function render()
     {
