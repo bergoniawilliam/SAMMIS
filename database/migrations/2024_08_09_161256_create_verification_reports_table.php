@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('verification_reports', function (Blueprint $table) {
             $table->id();
-            $table->integer('verified_by_id');
-            $table->string('search_input');
-            $table->datetime('date_time_verified');
-            $table->string('status');
+            $table->foreignId('verified_by_id')->constrained('users');
+            $table->foreignId('station_id')->constrained('stations');
+            $table->string('search_fields');
             $table->string('location');
             $table->timestamps();
         });
