@@ -14,13 +14,14 @@ use App\Models\Region;
 use App\Models\Province;
 use App\Models\City;
 use App\Models\Barangay;
+use App\Models\VerificationReport;
 use Livewire\Attributes\On;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 class Motorcycle extends Component
 {   
-      public $motor_model;
+    public $motor_model;
     public $selected_region_name=null;
     public $selected_province_name=null;
     public $selected_city_name=null;
@@ -50,6 +51,7 @@ class Motorcycle extends Component
     public $owner;
     public $ownerId;
     public $id;
+    public $search;
     public function render()
     {
         $this->motorcycles = MotorcycleReporter::all();
@@ -79,6 +81,18 @@ class Motorcycle extends Component
             $this->ioc = $this->reportmotorcycle->ioc;
             $this->date_time_missing = $this->reportmotorcycle->date_time_missing;
         }
+        $this->storeSearchInput();
+    }
+
+    public function storeSearchInput()
+    {
+            $verificationReport = VerificationReport::create([
+            'verified_by_id' => Auth::user()->id,
+            'station_id' => Auth::user()->station_id,
+            'search_fields' => $this->search,
+            'viewed_motorcycle' => $this->blotter_number,
+        ]);
+      
     }
     #[On('update-reportedMotorcycle')]
     public function updatereportedMotorcycle($ownerId,$motorcyclereporterId)

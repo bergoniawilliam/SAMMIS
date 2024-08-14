@@ -60,8 +60,8 @@ class UserSeeder extends Seeder
       $third_user->middle_name = 'Kakarot';
       $third_user->last_name = 'Goku';
       $third_user->qualifier = '';
-      $third_user->station_id = 6;
-      $third_user->unit_office_id = 6;
+      $third_user->station_id = 78;
+      $third_user->unit_office_id = 3;
       $third_user->isActive = '0';
       $third_user->save();
       $third_user->assignRole('verifier');
@@ -81,7 +81,7 @@ class UserSeeder extends Seeder
       $fourth_user->assignRole('viewer'); 
 
       $fifth_user = new User();
-      $fifth_user->email = 'delevoper@gmail.com';
+      $fifth_user->email = 'developer@gmail.com';
       $fifth_user->password = Hash::make('password123');
       $fifth_user->rank_id = 16;
       $fifth_user->first_name = 'Juan';
@@ -90,7 +90,7 @@ class UserSeeder extends Seeder
       $fifth_user->qualifier = 'Jr.';
       $fifth_user->station_id = 50;
       $fifth_user->unit_office_id = 4;
-      $fifth_user->isActive = '0';
+      $fifth_user->isActive = '1';
       $fifth_user->save();
       $fifth_user->assignRole('developer'); 
 

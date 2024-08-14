@@ -34,4 +34,8 @@ class UserAccessControl extends Component
         });
         
     }
+    public function clearSuccessMessage()
+    {
+        session()->forget('message');
+    }
 }

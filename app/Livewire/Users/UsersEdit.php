@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use App\Models\AuditTrailUser;
+use Spatie\Permission\Models\Role;
 class UsersEdit extends Component
 {
     public $user;
@@ -28,6 +29,8 @@ class UsersEdit extends Component
     public $selected_station_name="";
     public $selected_rank_id=null;
     public $selected_station="All";
+    public $selected_role_id;
+    public $roles;
  
     protected function rules()
     {
@@ -50,6 +53,7 @@ class UsersEdit extends Component
         {
             abort(404);
         }
+        $this->roles = Role::all();
         $this->ranks = RefRank::all();
         $this->unit_offices = UnitOffice::all();
         return view('livewire.users.users-edit')
@@ -72,6 +76,7 @@ class UsersEdit extends Component
             $this->loadInitialStations($this->user->station_id);
             $this->selected_station_name = $this->user->station ? $this->user->station->name : "All";
             $this->isActive = $this->user->isActive;
+            $this->selected_role_id = $this->user->roles->first()->id ?? null; 
         }
     }
      public function updatedSelectedUnitOfficeId($selected_unit_office_id, $station_id = null)
@@ -114,17 +119,16 @@ class UsersEdit extends Component
         $user->email = $this->email;
         $user->first_name = $this->first_name;
         $user->middle_name = $this->middle_name;
-        $user->middle_name = $this->middle_name;
         $user->last_name = $this->last_name;
         $user->qualifier = $this->qualifier;
         $user->rank_id = $this->selected_rank_id;
         $user->station_id = $this->getStationId($this->selected_station_name);
         $user->unit_office_id = $this->selected_unit_office_id ? $this->selected_unit_office_id : null;
         $user->isActive = $this->isActive;
-        // $user->save();
+        
 
         $newValues = $user->getDirty();
-        // dd($newValues);
+      
         $changes = [];
         foreach ($newValues as $attribute => $newValue)
         {
@@ -132,16 +136,27 @@ class UsersEdit extends Component
             $changes [] = "{ $attribute : $oldValue to $newValue }";
         }
 
-        // dd($changes);
-
+      
         if (!empty($user->getDirty())) {
             AuditTrailUser::create([
                 'user_id' => $this->user->id,
                 'action' => 'update',
                 'updated_fields' => $changes,
             ]);
+            
             $user->save();
+       
         }
+        if ($this->selected_role_id) {
+                $role = Role::find($this->selected_role_id);
+                if ($role) {
+                    $user->syncRoles($role->name); // Sync role by name
+                } else {
+                    session()->flash('error', 'Role not found!');
+                    return;
+                }
+                
+                }
 
 
         session()->flash('message', 'User has been updated successfully!');

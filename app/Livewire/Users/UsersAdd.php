@@ -5,6 +5,7 @@ use App\Models\UnitOffice;
 use App\Models\RefRank;
 use App\Models\Station;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use App\Models\AuditTrailUser;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
@@ -24,11 +25,13 @@ class UsersAdd extends Component
     public $selected_unit_office_id=null;
     public $isActive=false;
     public $users;
-    public $userRole;
+    public $selected_role_id;
+    public $roles;
 
     public function render()
     {
         $this->ranks = RefRank::all();
+        $this->roles = Role::all();
         $this->unit_offices = UnitOffice::all();
         return view('livewire.users.users-add') 
             ->extends('layouts.app')
@@ -87,7 +90,7 @@ class UsersAdd extends Component
         // ]);
         $userData = [
             'email' => $this->email,
-            'password' => Hash::make('qwerty54321'),
+            'password' => Hash::make('password123'),
             'rank_id' => $this->selected_rank_id,
             'first_name' => $this->first_name,
             'middle_name' => $this->middle_name,
@@ -96,10 +99,20 @@ class UsersAdd extends Component
             'station_id' => $this->getStationId($this->selected_station_name),
             'unit_office_id' => $this->selected_unit_office_id ? $this->selected_unit_office_id : null,
             'isActive' => $this->isActive,
+            
         ];
-
+        
          $user = User::create($userData);
-
+        if ($this->selected_role_id) {
+                $role = Role::find($this->selected_role_id);
+                if ($role) {
+                    $user->syncRoles([$role->name]); // Sync role by name
+                } else {
+                    session()->flash('error', 'Role not found!');
+                    return;
+                }
+        }
+         
          $userData['password'] = '******';
 
     // Sanitize values (remove special characters)

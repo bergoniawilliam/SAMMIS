@@ -12,6 +12,7 @@ class UnitOfficesSeeder extends Seeder
      */
      public function run(): void
     {
+        
          UnitOffice::create([
             'unit_office_name' => 'Cagayan Police Provincial Office',
             'abbvr' => 'CPPO',
@@ -36,5 +37,10 @@ class UnitOfficesSeeder extends Seeder
             'unit_office_name' => 'Batanes Police Provincial Office',
             'abbvr' => 'BPPO',
         ]);
+        UnitOffice::create([
+            'unit_office_name' => 'All',
+            'abbvr' => 'All',
+        ]);
+        
     }
 }

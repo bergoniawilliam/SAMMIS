@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('verified_by_id')->constrained('users');
             $table->foreignId('station_id')->constrained('stations');
-            $table->string('search_fields');
-            $table->string('location');
+            $table->string('search_fields')->nullable();
+            $table->string('viewed_motorcycle')->nullable();
+            $table->string('location')->nullable();
             $table->timestamps();
         });
     }

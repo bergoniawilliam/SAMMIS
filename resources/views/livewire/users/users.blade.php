@@ -82,8 +82,8 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
                 @foreach ($users as $user)
-                    <tr>
-                     
+                    <tr class="hover:cursor-pointer hover:bg-gray-200">
+                      
                         <td class="px-6 py-3 whitespace-nowrap">{{ $user->email }}</td>
                         <td class="px-6 py-3 whitespace-nowrap">{{ $user->first_name }}</td>
                         <td class="px-6 py-3 whitespace-nowrap">{{ $user->middle_name }}</td>

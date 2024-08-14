@@ -32,7 +32,7 @@
                     </svg>
                 </button>
             </div>
-        @endif
+        @endif 
 
         <div class="flex items-center mb-4 gap-2">
             <input wire:model.defer="search" type="text" placeholder="Search"
@@ -63,7 +63,7 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
                 @foreach ($reported_motorcycles as $reported_motorcycle)
-                    <tr>
+                    <tr class="hover:cursor-pointer hover:bg-gray-200">
                         <!-- <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->id }}</td> -->
                         <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->blotter_number }}</td>
                         <td class="px-6 py-3 whitespace-nowrap">{{ $reported_motorcycle->plate_number }}</td>
@@ -85,13 +85,13 @@
                                         class="block text-white bg-red-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete</a>
                                 @endcan
                                 @can('view reportedmotorcycle')
-                                    <a href="/reported-motorcycles/view/{{ $reported_motorcycle->id }}"
+                                    <a href="/reported-motorcycles/view/{{ $reported_motorcycle->id }}" wire:click="storeSearchInput2"
                                         class="block text-white bg-yellow-700 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">View</a>
                                 @endcan
                             </div>
                         </td>
 
-                    </tr>
+                    </tr> 
                 @endforeach
             </tbody>
         </table>

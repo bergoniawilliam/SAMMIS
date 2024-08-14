@@ -13,6 +13,7 @@ class VerificationReport extends Model
         'verified_by_id',
         'station_id',
         'search_fields',
+        'viewed_motorcycle',
         'location',
        
     ];

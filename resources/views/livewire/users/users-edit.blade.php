@@ -43,13 +43,16 @@
                         </div>
                     </label>
                 </div>
-                <div>
-                    <select name="" id="" wire:model="userRole">
-                        <option value="">Wag</option>
-                        <option value="">hard</option>
-                        <option value="">coded</option>
-                    </select>
-                </div>
+                <div class="w-1/2">
+                <label for="roles" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
+                <select wire:model.live="selected_role_id" name="selected_role_id" id="selected_role_id"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                <option value="">Select Role</option>
+                @foreach($roles as $role)
+                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                @endforeach
+                </select>
+            </div>
             </div>
         </div>
         <div class="flex justify-between space-x-4">

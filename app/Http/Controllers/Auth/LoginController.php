@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -48,11 +49,19 @@ class LoginController extends Controller
 
         // Check if the user is active
         if ($user && !$user->isActive) {
-            return false;
+             throw \Illuminate\Validation\ValidationException::withMessages([
+            $this->username() => __('Your account is inactive.'),
+        ]);
         }
 
         return $this->guard()->attempt(
             $this->credentials($request), $request->filled('remember')
         );
+    }
+     protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => __('Incorrect credentials.'),
+        ]);
     }
 }

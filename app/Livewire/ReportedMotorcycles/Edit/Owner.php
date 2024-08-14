@@ -50,7 +50,7 @@ class Owner extends Component
         return [
             'first_name_owner' => ['required', 'string'],   
             'last_name_owner' => ['required', 'string'], 
-            'cellphone_number_owner' => ['required', 'integer'], 
+            'cellphone_number_owner' => ['required', 'string'], 
             'selected_region_name_owner' => ['required', 'string'],
             'selected_province_name_owner' => ['required', 'string'],
             'selected_city_name_owner' => ['required', 'string'],

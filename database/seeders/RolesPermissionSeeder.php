@@ -97,7 +97,7 @@ class RolesPermissionSeeder extends Seeder
              if($roleName === 'developer')
             {
                 $permissions = [];
-                $resources = ['developer'];
+                $resources = ['useraccesscontrol'];
                 foreach ($resources as $resource)
                 {
                     $permissionList = ['view','create','update','delete'];

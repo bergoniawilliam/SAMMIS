@@ -16,6 +16,7 @@ use Auth;
 class ReportedMotorcycles extends Component
 {
     public $motorcycles;
+    public $verificationReport;
     public $motorcycleID;
     use WithPagination;
     public $search = '';
@@ -33,6 +34,7 @@ class ReportedMotorcycles extends Component
     {
         // This method is triggered when the search button is clicked
         $this->render();
+        $this->storeSearchInput();
     }
     public function clearSearch()
 {
@@ -93,6 +95,17 @@ class ReportedMotorcycles extends Component
             $this->dispatch('store-status', $reportmotorcycleId);
        
     }
+
+    public function storeSearchInput()
+    {
+            $verificationReport = VerificationReport::create([
+            'verified_by_id' => Auth::user()->id,
+            'station_id' => Auth::user()->station_id,
+            'search_fields' => $this->search,
+        ]);
+    }
+
+    
    
     
 }

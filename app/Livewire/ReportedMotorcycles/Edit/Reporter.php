@@ -50,7 +50,7 @@ class Reporter extends Component
         return [
             'first_name_reporter' => ['required', 'string'],   
             'last_name_reporter' => ['required', 'string'], 
-            'cellphone_number_reporter' => ['required', 'integer'], 
+            'cellphone_number_reporter' => ['required', 'string'], 
             'selected_region_name_reporter' => ['required', 'string'],
             'selected_province_name_reporter' => ['required', 'string'],
             'selected_city_name_reporter' => ['required', 'string'],

@@ -12,6 +12,7 @@ class StationsSeeder extends Seeder
      */
     public function run(): void
     {
+       
        Station::create([
             'name' => 'Basco Police Station',
             'unit_office_id' => ' 6',
@@ -585,6 +586,12 @@ class StationsSeeder extends Seeder
         Station::create([
             'name' => 'Santiago City Police Station 4',
             'unit_office_id' => '5',
+             
+        ]);
+
+         Station::create([
+            'name' => 'All',
+            'unit_office_id' => '7',
              
         ]);
     }
