@@ -122,8 +122,8 @@ class UsersEdit extends Component
         $user->last_name = $this->last_name;
         $user->qualifier = $this->qualifier;
         $user->rank_id = $this->selected_rank_id;
-        $user->station_id = $this->getStationId($this->selected_station_name);
-        $user->unit_office_id = $this->selected_unit_office_id ? $this->selected_unit_office_id : null;
+        $user->station_id = $this->selected_station_name !== "All" ? $this->getStationId($this->selected_station_name) : null;
+        $user->unit_office_id = $this->selected_station_name !== "All" ? $this->getStationId($this->selected_station_name) : null;
         $user->isActive = $this->isActive;
         
 

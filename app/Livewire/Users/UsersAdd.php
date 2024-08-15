@@ -45,6 +45,7 @@ class UsersAdd extends Component
             $this->stations = Station::where('unit_office_id', $selected_unit_office_id)->get();
         }else{
             $this->stations = Station::all();
+            $this->selected_station_name = "All";
         }
         
     }
@@ -58,6 +59,7 @@ class UsersAdd extends Component
         else
         {
             $this->stations = Station::all();
+            $this->selected_station_name = "All";
         }
     }
     protected function rules()
@@ -96,8 +98,8 @@ class UsersAdd extends Component
             'middle_name' => $this->middle_name,
             'last_name' => $this->last_name,
             'qualifier' => $this->qualifier,
-            'station_id' => $this->getStationId($this->selected_station_name),
-            'unit_office_id' => $this->selected_unit_office_id ? $this->selected_unit_office_id : 0,
+            'station_id' => $this->selected_station_name !== "All" ? $this->getStationId($this->selected_station_name) : null ,
+            'unit_office_id' => $this->selected_unit_office_id ? $this->selected_unit_office_id : null,
             'isActive' => $this->isActive,
             
         ];

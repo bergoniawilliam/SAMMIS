@@ -77,5 +77,6 @@ class User extends Authenticatable
     {
         $rankName = $this->rank ? $this->rank->abbvr : ''; // Assuming rank has a rank_name attribute
         return trim("{$rankName} {$this->first_name} {$this->middle_name} {$this->last_name} {$this->qualifier}");
+        // return trim($rankName) . ' ' . $this->first_name . ' ' . $this->middle_name . ' ' . $this->last_name . ' ' . $this->qualifier;
     }
 }

@@ -109,7 +109,7 @@
             <div class="col-span-2 sm:col-span-1 w-1/2">
                 <label for="selected_station_id"class="block mb-2 text-sm font-medium text-gray-900">Station {{ $selected_station_name }}
                 </label>
-                <input type="text" wire:init="loadInitialStations" wire:model="selected_station_name" list="datalistStations" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
+                <input type="text" wire:init="loadInitialStations" wire:model.live="selected_station_name" list="datalistStations" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
                 <datalist id="datalistStations">
                        <option value="All">
                     @if($stations)

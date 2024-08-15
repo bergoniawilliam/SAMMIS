@@ -10,13 +10,13 @@ use App\Models\VerificationReport;
 class VerificationReports extends Component
 {
     public $verificationReports;
-    public $selected_unit_office_id=null;
+    public $selected_unit_office_id;
     public $unit_offices;
 
-  public function mount()
-{
-    $this->verificationReports = VerificationReport::with('station.unitOffice', 'user.rank')->get();
-}
+    public function mount()
+    {
+        $this->verificationReports = VerificationReport::all();
+    }
 
 
     public function render()
@@ -27,15 +27,17 @@ class VerificationReports extends Component
             'verificationReports' => $this->verificationReports,
         ])->extends('layouts.app')->section('content');
     }
-     public function updatedSelectedUnitOfficeId($selected_unit_office_id, $station_id = null)
+
+    public function filterResults()
     {
-        
-        $this->selected_station_name='All';
-        if($selected_unit_office_id){
-            $this->stations = Station::where('unit_office_id', $selected_unit_office_id)->get();
-        }else{
-            $this->stations = Station::all();
+        if($this->selected_unit_office_id)
+        {
+            $station_ids = UnitOffice::find($this->selected_unit_office_id)->stations()->pluck('id');
+            $this->verificationReports = VerificationReport::whereIn('station_id', $station_ids)->get();
         }
-        
+        else
+        {
+            $this->verificationReports = VerificationReport::all();            
+        }
     }
 }
