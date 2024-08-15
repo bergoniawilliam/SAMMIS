@@ -56,10 +56,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function rank()
-    {
-        return $this->belongsTo(RefRank::class, 'rank');
-    }
+  
     
     public function station()
     {
@@ -69,5 +66,16 @@ class User extends Authenticatable
     public function unit_office()
     {
         return $this->belongsTo(UnitOffice::class, 'unit_office_id');
+    }
+    public function rank()
+    {
+        return $this->belongsTo(RefRank::class, 'rank_id');
+    }
+    
+
+    public function fullNameWithRankAndQualifier()
+    {
+        $rankName = $this->rank ? $this->rank->abbvr : ''; // Assuming rank has a rank_name attribute
+        return trim("{$rankName} {$this->first_name} {$this->middle_name} {$this->last_name} {$this->qualifier}");
     }
 }

@@ -14,8 +14,10 @@ class RefRank extends Model
         'name',
         'abbvr',
     ];
+    
+
     public function users()
-{
-    return $this->hasMany(User::class, 'rank');
-}
+    {
+        return $this->hasMany(User::class, 'rank_id');
+    }
 }

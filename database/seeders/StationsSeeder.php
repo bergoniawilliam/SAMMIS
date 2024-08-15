@@ -589,10 +589,6 @@ class StationsSeeder extends Seeder
              
         ]);
 
-         Station::create([
-            'name' => 'All',
-            'unit_office_id' => '7',
-             
-        ]);
+        
     }
 }

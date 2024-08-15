@@ -108,7 +108,7 @@
                 <label for="unit_office" class="block mb-2 text-sm font-medium text-gray-900">Unit/Offices  {{ $selected_unit_office_id }}</label>
                 <select name="selected_unit_office_id" wire:model.live="selected_unit_office_id" id="selected_unit_office_id"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                    <option value="">All</option>
+                  <option value="">All</option>
                     @foreach($unit_offices as $unit_office)
                         <option value="{{ $unit_office->id }}">{{ $unit_office->unit_office_name }}</option>
                     @endforeach
@@ -121,7 +121,7 @@
                     
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
                 <datalist id="datalistStations">
-                    <option value="All">
+                    <option value="">All
                     @if($stations)
                         @foreach($stations as $station)
                             <option value="{{ $station->name }}">

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Station;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,4 +25,5 @@ class UnitOffice extends Model
     {
         return $this->hasMany(Station::class);
     }
+    
 }

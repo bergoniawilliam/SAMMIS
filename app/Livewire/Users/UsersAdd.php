@@ -97,7 +97,7 @@ class UsersAdd extends Component
             'last_name' => $this->last_name,
             'qualifier' => $this->qualifier,
             'station_id' => $this->getStationId($this->selected_station_name),
-            'unit_office_id' => $this->selected_unit_office_id ? $this->selected_unit_office_id : null,
+            'unit_office_id' => $this->selected_unit_office_id ? $this->selected_unit_office_id : 0,
             'isActive' => $this->isActive,
             
         ];

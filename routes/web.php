@@ -14,6 +14,7 @@ use App\Livewire\ReportedMotorcycles\Add\Page as AddMotorPage;
 use App\Livewire\ReportedMotorcycles\Edit\Page as EditMotorPage;
 use App\Livewire\UserAccessControl\UserAccessControl;
 use App\Livewire\UserAccessControl\EditPermission;
+use App\Livewire\Viewer\VerificationReports;
 
 
 Route::get('/', function () {
@@ -51,5 +52,7 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/user-access-control', UserAccessControl::class)->name('user-access-control');
     Route::get('/user-access-control/edit-permission/{id}', EditPermission::class)->name('user-access-control.edit-permission');
+
+     Route::get('/verification-report', VerificationReports::class)->name('verification-report');
 
 }); 
