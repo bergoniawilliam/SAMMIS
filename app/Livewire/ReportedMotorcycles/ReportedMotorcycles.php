@@ -36,12 +36,12 @@ class ReportedMotorcycles extends Component
         $this->render();
         $this->storeSearchInput();
     }
-    public function clearSearch()
-{
-    // Reset the search field and refresh the table.
-    $this->reset('search');
-    $this->render();
-}
+        public function clearSearch()
+    {
+        // Reset the search field and refresh the table.
+        $this->reset('search');
+        $this->render();
+    } 
     public function render()
     {
         if(!Auth::user()->can('view reportedmotorcycle')){
@@ -98,11 +98,13 @@ class ReportedMotorcycles extends Component
 
     public function storeSearchInput()
     {
+        if (Auth::user()->hasRole('verifier')) {
             $verificationReport = VerificationReport::create([
-            'verified_by_id' => Auth::user()->id,
-            'station_id' => Auth::user()->station_id,
-            'search_fields' => $this->search,
+                'verified_by_id' => Auth::user()->id,
+                'station_id' => Auth::user()->station_id,
+                'search_fields' => $this->search,
         ]);
+        }
     }
 
     

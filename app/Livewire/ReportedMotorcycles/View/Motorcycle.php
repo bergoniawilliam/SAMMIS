@@ -86,12 +86,14 @@ class Motorcycle extends Component
 
     public function storeSearchInput()
     {
-            $verificationReport = VerificationReport::create([
-            'verified_by_id' => Auth::user()->id,
-            'station_id' => Auth::user()->station_id,
-            'search_fields' => $this->search,
-            'viewed_motorcycle' => $this->blotter_number,
-        ]);
+        if (Auth::user()->hasRole('verifier')) {
+                $verificationReport = VerificationReport::create([
+                'verified_by_id' => Auth::user()->id,
+                'station_id' => Auth::user()->station_id,
+                'search_fields' => $this->search,
+                'viewed_motorcycle' => $this->blotter_number,
+            ]);
+        }
       
     }
     #[On('update-reportedMotorcycle')]
