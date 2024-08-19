@@ -123,7 +123,7 @@ class UsersEdit extends Component
         $user->qualifier = $this->qualifier;
         $user->rank_id = $this->selected_rank_id;
         $user->station_id = $this->selected_station_name !== "All" ? $this->getStationId($this->selected_station_name) : null;
-        $user->unit_office_id = $this->selected_station_name !== "All" ? $this->getStationId($this->selected_station_name) : null;
+        $user->unit_office_id = $this->selected_unit_office_id ? $this->selected_unit_office_id : null;
         $user->isActive = $this->isActive;
         
 

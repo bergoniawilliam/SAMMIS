@@ -6,84 +6,44 @@ use Livewire\Component;
 use App\Models\Station;
 use App\Models\UnitOffice;
 use App\Models\VerificationReport;
+use App\Models\User;
+use Auth;
 
 class VerificationReports extends Component
 {
-    public $verificationReports;
+    
     public $selected_unit_office_id;
-    public $unit_offices;
+    public $selected_station_id;
     public $selected_station_name="All";
     public $stations;
     public $date_from; // Add this line
     public $date_to;   // Add this line
+    public $verificationReports = [];
+    public $unit_offices = [];
+    public $isInitialLoadUnitOffices = true;
+    public $isInitialLoadStations = true;
+    
     
 
     public function mount()
     {
         $this->verificationReports = VerificationReport::all();
+        $this->applyFilters();
+        
     }
 
 
     public function render()
     {
         $this->unit_offices = UnitOffice::all()->reverse();
-        
+        $this->applyFilters();
+        $this->loadUnitOffices();
         return view('livewire.viewer.verification-report', [
             'verificationReports' => $this->verificationReports,
         ])->extends('layouts.app')->section('content');
+       
     }
 
-    public function filterResults()
-    {
-        // if($this->selected_unit_office_id)
-        // {
-        //     $station_ids = UnitOffice::find($this->selected_unit_office_id)->stations()->pluck('id');
-        //     $this->verificationReports = VerificationReport::whereIn('station_id', $station_ids)->get();
-        // }
-        // else
-        // {
-        //     $this->verificationReports = VerificationReport::all();            
-        // }
-         // Start the query for filtering verification reports
-    $query = VerificationReport::query();
-
-        // Filter by selected unit office ID
-        if ($this->selected_unit_office_id) {
-            $station_ids = UnitOffice::find($this->selected_unit_office_id)->stations()->pluck('id');
-            $query->whereIn('station_id', $station_ids);
-        }
-
-        // Filter by selected station name if it's not 'All'
-        if ($this->selected_station_name && $this->selected_station_name !== 'All') {
-            $station = Station::where('name', $this->selected_station_name)->first();
-            if ($station) {
-                $query->where('station_id', $station->id);
-            }
-        }
-
-        // Filter by Date From
-        if ($this->date_from) {
-            $query->whereDate('created_at', '>=', $this->date_from);
-        }
-
-        // Filter by Date To
-        if ($this->date_to) {
-            $query->whereDate('created_at', '<=', $this->date_to);
-        }
-
-        // Get the filtered results
-        $this->verificationReports = $query->get();
-
-
-    }
-        public function clearSearch()
-    {
-        // Reset the search field and refresh the table.
-        $this->reset('selected_unit_office_id');
-        $this->verificationReports = VerificationReport::all();
-        $this->stations = Station::all();
-        $this->selected_station_name = "All";
-    }
     public function loadInitialStations()
     { 
        
@@ -107,6 +67,53 @@ class VerificationReports extends Component
             $this->stations = Station::all();
             $this->selected_station_name = "All";
         }
-        
+        $this->loadUnitOffices();
+    }
+     protected function loadUnitOffices()
+    {
+        $user = Auth::user();
+        if($user->unit_office_id === null){
+            $this->isInitialLoadUnitOffices = true;
+        }else{
+            $this->isInitialLoadUnitOffices = false;
+        }
+        if($user->station_id === null){
+            $this->isInitialLoadStations = true;
+        }else{
+            $this->isInitialLoadStations = false;
+        }
+    }
+    protected function applyFilters()
+    {
+        $user = Auth::user();
+        $query = VerificationReport::query();
+        if ($user->unit_office_id) {
+            $this->selected_unit_office_id = $user->unit_office_id;
+            $station_ids = UnitOffice::find($user->unit_office_id)->stations()->pluck('id');
+            $query->whereIn('station_id', $station_ids);
+        }
+        if ($user->station_id) {
+            $this->loadInitialStations($user->station_id);
+            $this->selected_station_name = $user->station->name;
+            $query->where('station_id', $user->station_id);
+            
+        }
+        if ($this->selected_unit_office_id) {
+            $station_ids = UnitOffice::find($this->selected_unit_office_id)->stations()->pluck('id');
+            $query->whereIn('station_id', $station_ids);
+        }
+         if ($this->selected_station_name && $this->selected_station_name !== 'All') {
+            $station = Station::where('name', $this->selected_station_name)->first();
+            if ($station) {
+                $query->where('station_id', $station->id);
+            }
+        }
+        if ($this->date_from) {
+            $query->whereDate('created_at', '>=', $this->date_from);
+        }
+        if ($this->date_to) {
+            $query->whereDate('created_at', '<=', $this->date_to);
+        }
+        $this->verificationReports = $query->get();
     }
 }
